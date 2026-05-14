@@ -22,7 +22,7 @@ const TechBackground = () => {
       const centerY = canvas.height / 2;
 
       // Base styles
-      ctx.strokeStyle = 'rgba(0, 212, 255, 0.4)';
+      ctx.strokeStyle = 'rgba(0, 212, 255, 0.6)';
       ctx.lineWidth = 1;
 
       // 1. Draw spinning concentric circles (HUD)
@@ -40,25 +40,25 @@ const TechBackground = () => {
       };
 
       // Inner circles
-      drawCircle(80, [5, 15], 2, 'rgba(0, 212, 255, 0.8)', 2);
-      drawCircle(120, [40, 20, 10, 20], -1, 'rgba(34, 197, 94, 0.6)', 1.5);
-      drawCircle(180, null, 0.5, 'rgba(0, 212, 255, 0.2)', 1);
-      drawCircle(220, [2, 6], 1.5, 'rgba(0, 212, 255, 0.5)', 3);
-      drawCircle(300, [100, 50, 20, 50], -0.8, 'rgba(34, 197, 94, 0.3)', 1);
-      drawCircle(450, [1, 10], 0.3, 'rgba(0, 212, 255, 0.1)', 10);
+      drawCircle(80, [5, 15], 2, 'rgba(0, 212, 255, 0.9)', 2);
+      drawCircle(120, [40, 20, 10, 20], -1, 'rgba(34, 197, 94, 0.8)', 1.5);
+      drawCircle(180, null, 0.5, 'rgba(0, 212, 255, 0.3)', 1);
+      drawCircle(220, [2, 6], 1.5, 'rgba(0, 212, 255, 0.7)', 3);
+      drawCircle(300, [100, 50, 20, 50], -0.8, 'rgba(34, 197, 94, 0.5)', 1);
+      drawCircle(450, [1, 10], 0.3, 'rgba(0, 212, 255, 0.2)', 10);
 
       // 2. Draw Circuit lines extending to the right
       ctx.setLineDash([]);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(0, 212, 255, 0.2)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(0, 212, 255, 0.4)';
 
       const drawCircuitLine = (startY, lengths, staticDot = false) => {
         ctx.beginPath();
         let currentX = centerX + 180;
         let currentY = centerY + startY;
-        
+
         ctx.moveTo(currentX, currentY);
-        
+
         lengths.forEach((seg, i) => {
           if (i % 2 === 0) {
             currentX += seg;
@@ -67,7 +67,7 @@ const TechBackground = () => {
           }
           ctx.lineTo(currentX, currentY);
         });
-        
+
         ctx.stroke();
 
         // Draw node dot at the end
@@ -79,7 +79,7 @@ const TechBackground = () => {
         }
 
         // Draw animated data packet
-        const totalLength = lengths.reduce((a,b)=>Math.abs(a)+Math.abs(b), 0);
+        const totalLength = lengths.reduce((a, b) => Math.abs(a) + Math.abs(b), 0);
         const progress = (time * 100) % totalLength;
         // Simple representation of data moving along the line for visual flavor
       };
@@ -94,8 +94,8 @@ const TechBackground = () => {
 
       // Hexagon grids subtly in the background
       ctx.globalAlpha = 0.05;
-      for(let i=0; i<canvas.width; i+=100) {
-        for(let j=0; j<canvas.height; j+=100) {
+      for (let i = 0; i < canvas.width; i += 100) {
+        for (let j = 0; j < canvas.height; j += 100) {
           // just subtle grid
           ctx.strokeRect(i, j, 100, 100);
         }
@@ -116,13 +116,14 @@ const TechBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] bg-[#050B14] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-[-1] bg-gradient-to-br from-[#0a2540] via-[#0a1526] to-[#030816] overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="w-full h-full"
+        className="w-full h-full opacity-60"
       />
-      {/* Deep blue/cyan radial gradient for that tech theme overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/10 via-[#050B14]/80 to-[#050B14] mix-blend-multiply"></div>
+      {/* Cyan vibrant glow at the top left to match the HUD rings, and bottom right for depth */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-cyan-600/20 rounded-full blur-[120px]"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[100px]"></div>
     </div>
   );
 };
