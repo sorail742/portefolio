@@ -37,16 +37,16 @@ export default function Hero() {
   return (
     <section id="home" className="min-h-screen flex items-center pt-20 px-4 relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-pattern-grid opacity-30"></div>
+        {/* Glow Effects */}
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.4, 0.3] }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyanAccent/10 rounded-full blur-3xl">
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyanAccent/5 rounded-full blur-3xl">
         </motion.div>
         <motion.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
           transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-greenAccent/10 rounded-full blur-3xl">
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-greenAccent/5 rounded-full blur-3xl">
         </motion.div>
       </div>
 
