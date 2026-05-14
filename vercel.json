@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd portfolio-frontend && npm ci && npm run build",
+  "outputDirectory": "portfolio-frontend/dist",
+  "framework": "vite"
+}
