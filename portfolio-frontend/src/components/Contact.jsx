@@ -1,248 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, Loader, CheckCircle, AlertCircle, Mail, Phone, MapPin } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { Mail, Github, Linkedin, Smartphone } from 'lucide-react';
 
-const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // 'idle', 'loading', 'success', 'error'
-  const [error, setError] = useState(null);
-
-  // Initialiser EmailJS au chargement du composant
-  useEffect(() => {
-    // ⚠️ IMPORTANT: Remplacez par votre clé publique EmailJS
-    // https://www.emailjs.com/docs/rest-api/
-    emailjs.init('MS5HiWTONgye26QV3');
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
+export default function Contact() {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus('loading');
-    setError(null);
-
-    try {
-      // Envoyer l'email via EmailJS
-      await emailjs.send(
-        'service_l35wsw7', // ⚠️ Remplacez par votre Service ID
-        'template_g449lme', // ⚠️ Remplacez par votre Template ID
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_email: 'keithsorail@gmail.com'
-        }
-      );
-      
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    } catch (err) {
-      setStatus('error');
-      setError('Une erreur est survenue. Veuillez réessayer plus tard.');
-      console.error('Erreur lors de l\'envoi du message:', err);
-      setTimeout(() => setStatus('idle'), 3000);
-    }
-  };
-
-  const contactInfo = [
-    {
-      icon: <Mail size={24} />,
-      title: 'Email',
-      value: 'keithsorail@gmail.com',
-      link: 'mailto:keithsorail@gmail.com'
-    },
-    {
-      icon: <Phone size={24} />,
-      title: 'Téléphone',
-      value: '+224 624 284 874',
-      link: 'tel:+224624284874'
-    },
-    {
-      icon: <MapPin size={24} />,
-      title: 'Localisation',
-      value: 'Guinée',
-      link: '#'
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
+    // Simulate form submission
+    alert('Message envoyé avec succès !');
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-slate-800/50 via-slate-900/50 to-black/50 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
+    <section id="contact" className="py-24 px-4 bg-slate-900/30">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Contactez-moi
+          <h2 className="text-3xl font-mono font-bold mb-4 flex items-center justify-center">
+            <span className="text-cyanAccent mr-2">04.</span> Me Contacter
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Vous avez un projet en tête? N'hésitez pas à me contacter
+          <p className="text-slate-400 max-w-xl mx-auto mb-12">
+            Disponible pour un stage ou une mission freelance. Que vous ayez une question ou un projet, n'hésitez pas à m'écrire !
           </p>
-        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Informations de contact */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-8">Mes coordonnées</h3>
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.link}
-                  variants={itemVariants}
-                  className="group glass p-6 rounded-2xl flex items-start gap-4 hover-lift"
-                >
-                  <div className="p-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg text-blue-400 group-hover:text-blue-300 smooth-transition">
-                    {info.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-1">{info.title}</h4>
-                    <p className="text-gray-400 group-hover:text-gray-300 smooth-transition">{info.value}</p>
-                  </div>
-                </motion.a>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+            <div>
+              <h3 className="text-xl text-slate-200 font-mono mb-6">Informations</h3>
+              <div className="space-y-4">
+                <a href="mailto:keithsorail@gmail.com" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
+                  <Mail className="mr-4 group-hover:scale-110 transition-transform" /> keithsorail@gmail.com
+                </a>
+                <div className="flex items-center text-slate-400">
+                  <Smartphone className="mr-4" /> +224 624 284 874
+                </div>
+                <a href="https://github.com/sorail742742" target="_blank" rel="noreferrer" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
+                  <Github className="mr-4 group-hover:scale-110 transition-transform" /> github.com/sorail742
+                </a>
+              </div>
             </div>
-          </motion.div>
 
-          {/* Formulaire de contact */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="glass p-8 rounded-2xl">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-200 mb-2">
-                    Votre nom
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none smooth-transition"
-                    placeholder="Votre nom"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
-                    Votre email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none smooth-transition"
-                    placeholder="votre.email@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-200 mb-2">
-                    Votre message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none smooth-transition resize-none"
-                    placeholder="Votre message..."
-                  />
-                </div>
-
+            <form onSubmit={handleSubmit} className="space-y-4 bg-cardBg/50 backdrop-blur-md p-8 rounded-2xl border border-slate-700/50 shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-cyanAccent/5 rounded-full blur-3xl -mr-10 -mt-10 group-focus-within:bg-cyanAccent/10 transition-colors"></div>
+              <div className="relative z-10">
+                <input type="text" placeholder="Nom" required className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyanAccent/50 focus:ring-1 focus:ring-cyanAccent/50 transition-all mb-4" />
+                <input type="email" placeholder="Email" required className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyanAccent/50 focus:ring-1 focus:ring-cyanAccent/50 transition-all mb-4" />
+                <textarea placeholder="Message" required rows="4" className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyanAccent/50 focus:ring-1 focus:ring-cyanAccent/50 transition-all resize-none mb-4"></textarea>
                 <motion.button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-600 smooth-transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full px-8 py-3 bg-cyanAccent/90 text-darkBg font-bold rounded-lg hover:bg-cyanAccent transition-colors shadow-[0_0_20px_rgba(0,212,255,0.3)] hover:shadow-[0_0_30px_rgba(0,212,255,0.5)]"
                 >
-                  {status === 'loading' ? (
-                    <>
-                      <Loader size={18} className="animate-spin" />
-                      Envoi...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={18} />
-                      Envoyer
-                    </>
-                  )}
+                  Envoyer
                 </motion.button>
-
-                {status === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-3 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300 flex items-center gap-2 text-center justify-center"
-                  >
-                    <CheckCircle size={18} />
-                    Message envoyé avec succès! 🎉
-                  </motion.div>
-                )}
-
-                {status === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 flex items-center gap-2 text-center justify-center"
-                  >
-                    <AlertCircle size={18} />
-                    {error}
-                  </motion.div>
-                )}
-              </form>
-            </div>
-          </motion.div>
-        </div>
+              </div>
+            </form>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}

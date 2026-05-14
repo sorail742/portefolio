@@ -1,138 +1,51 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { skills } from '../data/skills';
 
-const skillCategories = [
-  {
-    title: 'Front-end',
-    icon: '🎨',
-    skills: ['React', 'Tailwind CSS', 'JavaScript', 'HTML/CSS'],
-  },
-  {
-    title: 'Back-end',
-    icon: '⚙️',
-    skills: ['Node.js', 'Express.js', 'REST API'],
-  },
-  {
-    title: 'Base de données',
-    icon: '💾',
-    skills: ['MongoDB', 'Mongoose', 'PostgreSQL'],
-  },
-  {
-    title: 'Outils',
-    icon: '🛠️',
-    skills: ['Git/GitHub', 'VS Code', 'Figma', 'Vite'],
-  },
-];
-
-const methods = [
-  'Clean Code', 
-  'Responsive Design', 
-  'REST API', 
-  'Agile'
-];
-
-
-
-const Skills = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
+export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gradient-to-br from-slate-900/50 via-slate-800/50 to-black/50 relative overflow-hidden">
-      <div className="absolute -left-40 bottom-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
+    <section id="skills" className="py-24 px-4 bg-slate-900/30">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Mes Compétences
+          <h2 className="text-3xl font-mono font-bold mb-12 flex items-center">
+            <span className="text-cyanAccent mr-2">02.</span> Compétences
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Un aperçu des technologies et outils que je maîtrise
-          </p>
-        </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {skillCategories.map((category) => (
-            <motion.div 
-              key={category.title}
-              variants={itemVariants}
-              className="glass p-8 rounded-2xl"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">{category.icon}</span>
-                <h3 className="text-2xl font-bold text-white">{category.title}</h3>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill) => (
-                  <div key={skill} className="px-4 py-2 bg-slate-700/50 rounded-lg text-white text-sm font-medium">
-                    {skill}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Section Méthodes */}
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h3 className="text-3xl font-bold text-white mb-8">Méthodologies & Bonnes Pratiques</h3>
-          <motion.div 
-            className="flex flex-wrap justify-center gap-4"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {methods.map((method, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Object.entries(skills).map(([category, items], idx) => (
               <motion.div
-                key={method}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(0, 212, 255, 0.2)" }}
+                className="bg-cardBg relative border border-slate-700/50 p-6 rounded-xl overflow-hidden group transition-all"
               >
-                <div className="glass px-6 py-3 rounded-full font-semibold text-white hover-lift smooth-transition">
-                  {method}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-cyanAccent/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-cyanAccent/10 transition-colors"></div>
+                <h3 className="text-xl font-bold font-mono text-slate-100 mb-6 pb-2 border-b border-slate-700 relative z-10 group-hover:text-cyanAccent transition-colors">
+                  {category}
+                </h3>
+                <div className="flex flex-wrap gap-3 relative z-10">
+                  {items.map(skill => (
+                    <motion.span
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 212, 255, 0.1)", borderColor: "rgba(0, 212, 255, 0.4)" }}
+                      key={skill}
+                      className="px-4 py-2 bg-slate-800/80 text-slate-300 rounded-lg font-sans text-sm border border-slate-700 shadow-sm cursor-default transition-colors"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

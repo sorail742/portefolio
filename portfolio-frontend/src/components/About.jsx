@@ -1,121 +1,56 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Zap, Target } from 'lucide-react';
 
-const About = () => {
-  const features = [
-    {
-      icon: <Code2 size={24} />,
-      title: "Code Propre",
-      description: "J'écris du code maintenable et optimisé"
-    },
-    {
-      icon: <Zap size={24} />,
-      title: "Performance",
-      description: "Des applications rapides et réactives"
-    },
-    {
-      icon: <Target size={24} />,
-      title: "Résultats",
-      description: "Focused sur la qualité et l'innovation"
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
+export default function About() {
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-slate-800/50 via-slate-900/50 to-black/50 relative overflow-hidden">
-      <div className="absolute -right-40 top-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
+    <section id="about" className="py-24 px-4 relative">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row gap-12 items-start"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            À propos de moi
-          </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Un développeur passionné qui transforme les idées en solutions numériques innovantes
-          </p>
-        </motion.div>
+          <div className="flex-1">
+            <h2 className="text-3xl font-mono font-bold mb-8 flex items-center">
+              <span className="text-cyanAccent mr-2">01.</span> À propos de moi
+            </h2>
+            <div className="text-slate-400 font-sans space-y-4 text-lg leading-relaxed">
+              <p>
+                Passionné par le développement depuis mes débuts en programmation, je suis actuellement en Licence 2 Informatique à l'Université de Labé. Mon objectif est de créer des outils performants, accessibles et esthétiques.
+              </p>
+              <p>
+                En tant que développeur orienté Full-Stack et Mobile, j'affectionne particulièrement l'écosystème React et Node.js. Je m'efforce toujours d'apprendre les meilleures pratiques et de relever de nouveaux défis.
+              </p>
+            </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-          <motion.div 
-            className="flex justify-center"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-slate-600 rounded-2xl blur-2xl opacity-20"></div>
-              <div className="relative rounded-2xl shadow-2xl h-96 w-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 border-2 border-white flex items-center justify-center">
-                <span className="text-9xl">👨‍💻</span>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <span className="px-4 py-2 rounded-full border border-cyanAccent/30 text-cyanAccent bg-cyanAccent/10 text-sm font-mono">Passionné d'Open Source</span>
+              <span className="px-4 py-2 rounded-full border border-cyanAccent/30 text-cyanAccent bg-cyanAccent/10 text-sm font-mono">Disponible pour stage</span>
+              <span className="px-4 py-2 rounded-full border border-slate-600 text-slate-300 bg-cardBg text-sm font-mono">Open to remote</span>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="font-mono text-xl text-slate-200 mb-4">Parcours Académique</h3>
+              <div className="border-l-2 border-slate-700 pl-4 space-y-6">
+                <div>
+                  <h4 className="text-slate-100 font-bold">Licence 2 Informatique</h4>
+                  <p className="text-cyanAccent font-mono text-sm">Université de Labé • 2023 - Présent</p>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            className="space-y-6"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Je suis un développeur Full-Stack passionné par la création d'applications web et mobiles intuitives et performantes. J'aime transformer des idées en solutions concrètes grâce à des technologies modernes comme React, Node.js, PostgreSQL, MySQL et MongoDB.
-            </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Autonome, curieux et rigoureux, je conçois aussi bien des interfaces utilisateurs modernes que des API robustes et sécurisées. Mon objectif est d'offrir des expériences digitales fluides, optimisées et adaptées aux besoins réels des utilisateurs.
-            </p>
-          </motion.div>
-        </div>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="group glass p-8 rounded-2xl hover-lift"
-            >
-              <div className="h-14 w-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white group-hover:scale-110 smooth-transition">
-                {feature.icon}
+          <div className="w-full md:w-1/3 flex justify-center mt-10 md:mt-0">
+            <div className="relative w-64 h-64 rounded-full border-2 border-cyanAccent overflow-hidden group">
+              <div className="absolute inset-0 bg-cyanAccent/20 group-hover:bg-transparent transition-colors z-10"></div>
+              <div className="w-full h-full bg-slate-800 flex items-center justify-center text-7xl font-mono text-slate-600">
+                SK
               </div>
-              <h3 className="text-xl font-bold text-white mt-4">{feature.title}</h3>
-              <p className="text-gray-400 mt-2">{feature.description}</p>
-            </motion.div>
-          ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default About;
+}
