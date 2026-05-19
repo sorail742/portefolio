@@ -42,11 +42,13 @@ export default function About() {
           </div>
 
           <div className="w-full md:w-1/3 flex justify-center mt-10 md:mt-0">
-            <div className="relative w-64 h-64 rounded-full border-2 border-cyanAccent overflow-hidden group">
-              <div className="absolute inset-0 bg-cyanAccent/20 group-hover:bg-transparent transition-colors z-10"></div>
-              <div className="w-full h-full bg-slate-800 flex items-center justify-center text-7xl font-mono text-slate-600">
-                SK
-              </div>
+            <div className="relative w-64 h-64 rounded-xl border-2 border-cyanAccent/50 overflow-hidden group shadow-[0_0_30px_rgba(0,212,255,0.15)] hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-500">
+              <div className="absolute inset-0 bg-cyanAccent/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+              <img
+                src="/profile.png"
+                alt="Sory Keïta"
+                className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+              />
             </div>
           </div>
         </motion.div>
