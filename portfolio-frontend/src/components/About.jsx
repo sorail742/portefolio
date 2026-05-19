@@ -46,7 +46,7 @@ export default function About() {
               <div className="absolute inset-0 bg-cyanAccent/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
               <img
                 src="/profile.png"
-                alt="Sory Keïta"
+                alt="Sory Keita"
                 className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
               />
             </div>
