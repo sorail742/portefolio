@@ -21,6 +21,7 @@ export default function Contact() {
       name: formData.name, // Added to match their template {{name}}
       from_email: formData.email,
       email: formData.email, // Added just in case
+      temps: new Date().toLocaleString('fr-FR'), // Added to match their template {{temps}}
       reply_to: formData.email,
       message: formData.message,
     };
