@@ -24,9 +24,11 @@ export default function CVPage() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="pb-24" // Extra padding for the fixed export button
+        className="pb-24 w-full overflow-x-auto flex justify-start md:justify-center p-4 scrollbar-hide"
       >
-        <CV ref={targetRef} />
+        <div style={{ minWidth: "210mm" }}>
+          <CV ref={targetRef} />
+        </div>
       </motion.div>
 
       <CVExportButton targetRef={targetRef} />
