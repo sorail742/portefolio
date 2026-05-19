@@ -7,16 +7,16 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: <Github size={20} />, url: "https://github.com/sorail742", label: "GitHub" },
-    { icon: <Linkedin size={20} />, url: "https://linkedin.com/in/sory-keita", label: "LinkedIn" },
-    { icon: <Facebook size={20} />, url: "https://facebook.com/sory.keita", label: "Facebook" },
-    { icon: <Twitter size={20} />, url: "https://twitter.com/sory_keita", label: "Twitter" },
+    { icon: <Linkedin size={20} />, url: "https://linkedin.com/in/sory-keita-7434b239a/", label: "LinkedIn" },
+    { icon: <Facebook size={20} />, url: "https://facebook.com/sory.keita.241594", label: "Facebook" },
+    //{ icon: <Twitter size={20} />, url: "https://twitter.com/sory_keita", label: "Twitter" },
     { icon: <Mail size={20} />, url: "mailto:keithsorail@gmail.com", label: "Email" }
   ];
 
   return (
     <footer className="relative mt-20 border-t border-slate-800/50 bg-[#0a1526]/50 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
-        
+
         {/* Branding */}
         <div className="mb-4 md:mb-0 text-center md:text-left">
           <span className="text-2xl font-bold font-mono text-slate-200">

@@ -73,6 +73,16 @@ const CV = forwardRef((props, ref) => {
             <li><strong>Anglais :</strong> Technique</li>
           </ul>
         </div>
+
+        {/* Interests */}
+        <div className="mb-10 w-full">
+          <h2 className="font-bold text-lg uppercase tracking-wider pb-1 mb-4 border-b-2" style={{ borderColor: brandColor, color: brandColor }}>Centres d'intérêt</h2>
+          <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+            <li>Veille Technologique</li>
+            <li>Open Source</li>
+            <li>Sport</li>
+          </ul>
+        </div>
       </div>
 
       {/* Right Column (65%) */}
