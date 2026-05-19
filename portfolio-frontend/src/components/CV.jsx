@@ -1,73 +1,83 @@
 import React, { forwardRef } from 'react';
-import { Mail, Smartphone, MapPin, Github, User, Briefcase, GraduationCap } from 'lucide-react';
+import { Mail, Smartphone, MapPin, Github, User, Briefcase } from 'lucide-react';
 import { projects } from '../data/projects';
 
 const CV = forwardRef((props, ref) => {
-  const brandColor = "#1f3b5e"; // Professional Navy Blue
+  const brandColor = "#1f3b5e";
 
   return (
-    <div ref={ref} className="w-[210mm] min-h-[297mm] bg-white text-slate-800 mx-auto shadow-2xl relative overflow-hidden flex font-sans" style={{ boxSizing: 'border-box' }}>
+    <div
+      ref={ref}
+      className="bg-white text-slate-800 mx-auto shadow-2xl flex font-sans"
+      style={{
+        width: '210mm',
+        minHeight: '297mm',
+        maxHeight: '297mm',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        fontSize: '12px',
+      }}
+    >
+      {/* Left Column (33%) */}
+      <div style={{ width: '33%', backgroundColor: '#f8fafc', borderRight: '1px solid #e2e8f0', padding: '28px 18px', display: 'flex', flexDirection: 'column', boxSizing: 'border-box' }}>
 
-      {/* Left Column (35%) */}
-      <div className="w-[35%] bg-slate-50 border-r border-slate-200 p-8 flex flex-col h-full pt-12">
-        {/* Profile Pic / Initial */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-32 h-32 rounded-full flex items-center justify-center text-4xl font-bold mb-4 border-4 overflow-hidden" style={{ borderColor: brandColor, color: brandColor, backgroundColor: `${brandColor}10` }}>
-            <img src="/profile.png" alt="Sory Keïta" className="w-full h-full object-cover" />
+        {/* Profile Pic */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <div style={{ width: '100px', height: '100px', borderRadius: '50%', border: `3px solid ${brandColor}`, overflow: 'hidden' }}>
+            <img src="/profile.png" alt="Sory Keita" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
 
-        {/* Contact Info */}
-        <div className="space-y-4 text-sm mb-10 w-full">
-          <h2 className="font-bold text-lg uppercase tracking-wider pb-1 mb-4 border-b-2" style={{ borderColor: brandColor, color: brandColor }}>Contact</h2>
-          <div className="flex items-center gap-3">
-            <Mail size={16} style={{ color: brandColor }} />
-            <span className="text-slate-700 break-all">keithsorail@gmail.com</span>
+        {/* Contact */}
+        <div style={{ marginBottom: '16px' }}>
+          <h2 style={{ fontWeight: '800', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: brandColor, borderBottom: `2px solid ${brandColor}`, paddingBottom: '4px', marginBottom: '10px' }}>Contact</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+            <Mail size={12} style={{ color: brandColor, flexShrink: 0 }} />
+            <span style={{ color: '#475569', fontSize: '10px', wordBreak: 'break-all' }}>keithsorail@gmail.com</span>
           </div>
-          <div className="flex items-center gap-3">
-            <Smartphone size={16} style={{ color: brandColor }} />
-            <span className="text-slate-700">+224 624 284 874</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+            <Smartphone size={12} style={{ color: brandColor, flexShrink: 0 }} />
+            <span style={{ color: '#475569', fontSize: '10px' }}>+224 624 284 874</span>
           </div>
-          <div className="flex items-center gap-3">
-            <MapPin size={16} style={{ color: brandColor }} />
-            <span className="text-slate-700">Labé, Guinée</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+            <MapPin size={12} style={{ color: brandColor, flexShrink: 0 }} />
+            <span style={{ color: '#475569', fontSize: '10px' }}>Labé, Guinée</span>
           </div>
-          <div className="flex items-center gap-3">
-            <Github size={16} style={{ color: brandColor }} />
-            <span className="text-slate-700">github.com/sorail742</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Github size={12} style={{ color: brandColor, flexShrink: 0 }} />
+            <span style={{ color: '#475569', fontSize: '10px' }}>github.com/sorail742</span>
           </div>
         </div>
 
         {/* Skills */}
-        <div className="mb-10 w-full">
-          <h2 className="font-bold text-lg uppercase tracking-wider pb-1 mb-4 border-b-2" style={{ borderColor: brandColor, color: brandColor }}>Compétences</h2>
-          <div className="space-y-3 text-sm">
-            <div>
-              <h3 className="font-bold text-slate-800 mb-1">Frontend & Mobile</h3>
-              <ul className="list-disc list-inside text-slate-600 space-y-0.5">
-                <li>React, React Native</li>
-                <li>Tailwind CSS, Vite</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-800 mb-1">Backend</h3>
-              <ul className="list-disc list-inside text-slate-600 space-y-0.5">
-                <li>Node.js</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-800 mb-1">Base de Données</h3>
-              <ul className="list-disc list-inside text-slate-600 space-y-0.5">
-                <li>PostgreSQL, MySQL</li>
-              </ul>
-            </div>
+        <div style={{ marginBottom: '16px' }}>
+          <h2 style={{ fontWeight: '800', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: brandColor, borderBottom: `2px solid ${brandColor}`, paddingBottom: '4px', marginBottom: '10px' }}>Compétences</h2>
+          <div style={{ marginBottom: '8px' }}>
+            <h3 style={{ fontWeight: '700', color: '#1e293b', fontSize: '10px', marginBottom: '3px' }}>Frontend & Mobile</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px' }}>
+              <li>React, React Native</li>
+              <li>Tailwind CSS, Vite</li>
+            </ul>
+          </div>
+          <div style={{ marginBottom: '8px' }}>
+            <h3 style={{ fontWeight: '700', color: '#1e293b', fontSize: '10px', marginBottom: '3px' }}>Backend</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px' }}>
+              <li>Node.js, Express</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style={{ fontWeight: '700', color: '#1e293b', fontSize: '10px', marginBottom: '3px' }}>Base de Données</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px' }}>
+              <li>PostgreSQL, MySQL</li>
+              <li>MongoDB</li>
+            </ul>
           </div>
         </div>
 
         {/* Languages */}
-        <div className="mb-10 w-full">
-          <h2 className="font-bold text-lg uppercase tracking-wider pb-1 mb-4 border-b-2" style={{ borderColor: brandColor, color: brandColor }}>Langues</h2>
-          <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+        <div style={{ marginBottom: '16px' }}>
+          <h2 style={{ fontWeight: '800', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: brandColor, borderBottom: `2px solid ${brandColor}`, paddingBottom: '4px', marginBottom: '10px' }}>Langues</h2>
+          <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px', lineHeight: '1.7' }}>
             <li><strong>Français :</strong> Courant</li>
             <li><strong>Malinké :</strong> Natif</li>
             <li><strong>Anglais :</strong> Technique</li>
@@ -75,9 +85,9 @@ const CV = forwardRef((props, ref) => {
         </div>
 
         {/* Interests */}
-        <div className="mb-10 w-full">
-          <h2 className="font-bold text-lg uppercase tracking-wider pb-1 mb-4 border-b-2" style={{ borderColor: brandColor, color: brandColor }}>Centres d'intérêt</h2>
-          <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+        <div>
+          <h2 style={{ fontWeight: '800', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', color: brandColor, borderBottom: `2px solid ${brandColor}`, paddingBottom: '4px', marginBottom: '10px' }}>Centres d'intérêt</h2>
+          <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px', lineHeight: '1.7' }}>
             <li>Veille Technologique</li>
             <li>Open Source</li>
             <li>Sport</li>
@@ -85,89 +95,74 @@ const CV = forwardRef((props, ref) => {
         </div>
       </div>
 
-      {/* Right Column (65%) */}
-      <div className="w-[65%] bg-white p-8 pl-10 pr-8 flex flex-col pt-12">
+      {/* Right Column (67%) */}
+      <div style={{ width: '67%', backgroundColor: '#ffffff', padding: '28px 24px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
 
-        {/* Header Name & Title */}
-        <div className="mb-10">
-          <h1 className="text-4xl font-black uppercase tracking-tight mb-1" style={{ color: brandColor }}>Sory Keïta</h1>
-          <h2 className="text-xl font-bold tracking-widest text-slate-500 uppercase">
-            Développeur Full-Stack
-          </h2>
+        {/* Header */}
+        <div style={{ marginBottom: '20px' }}>
+          <h1 style={{ fontSize: '28px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '-0.5px', color: brandColor, margin: '0 0 4px 0' }}>Sory Keita</h1>
+          <h2 style={{ fontSize: '12px', fontWeight: '700', letterSpacing: '2px', color: '#64748b', textTransform: 'uppercase', margin: 0 }}>Développeur Full-Stack</h2>
         </div>
 
-        {/* Profile Section */}
-        <div className="mb-8 relative">
-          {/* Header */}
-          <div className="flex items-center mb-3">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white z-10" style={{ backgroundColor: brandColor }}>
-              <User size={18} />
+        {/* Profile */}
+        <div style={{ marginBottom: '16px', position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ width: '26px', height: '26px', borderRadius: '50%', backgroundColor: brandColor, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <User size={14} color="white" />
             </div>
-            <div className="flex-1 ml-3 border-b-2" style={{ borderColor: brandColor }}>
-              <h2 className="font-bold text-xl uppercase tracking-widest" style={{ color: brandColor }}>Profile</h2>
+            <div style={{ flex: 1, marginLeft: '10px', borderBottom: `2px solid ${brandColor}` }}>
+              <h2 style={{ fontWeight: '700', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '2px', color: brandColor, margin: '0 0 2px 0' }}>Profile</h2>
             </div>
           </div>
-          {/* Timeline Line */}
-          <div className="absolute left-4 top-8 bottom-0 w-[1px] -ml-[0.5px]" style={{ backgroundColor: brandColor }}></div>
-          {/* Content */}
-          <div className="pl-12 relative pb-2">
-            <div className="absolute w-2 h-2 bg-white rounded-full border-2 left-[11px] top-2" style={{ borderColor: brandColor }}></div>
-            <p className="text-sm text-slate-600 leading-relaxed text-justify">
+          <div style={{ paddingLeft: '36px' }}>
+            <p style={{ fontSize: '10px', color: '#475569', lineHeight: '1.65', textAlign: 'justify', margin: 0 }}>
               Développeur web passionné et autodidacte, j'ai renforcé mes compétences à travers divers projets concrets et des défis techniques variés. Curieux et motivé, j'évolue continuellement dans un environnement en constante évolution. En quête de nouveaux challenges, je souhaite intégrer une équipe dynamique à laquelle je pourrais apporter ma rigueur, ma créativité et ma soif d'apprendre.
             </p>
           </div>
         </div>
 
-        {/* Professional Experience Section */}
-        <div className="mb-2 relative">
-          {/* Header */}
-          <div className="flex items-center mb-3">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white z-10" style={{ backgroundColor: brandColor }}>
-              <Briefcase size={18} />
+        {/* Experience */}
+        <div style={{ position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ width: '26px', height: '26px', borderRadius: '50%', backgroundColor: brandColor, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Briefcase size={14} color="white" />
             </div>
-            <div className="flex-1 ml-3 border-b-2" style={{ borderColor: brandColor }}>
-              <h2 className="font-bold text-xl uppercase tracking-widest" style={{ color: brandColor }}>Expériences Professionnelles</h2>
+            <div style={{ flex: 1, marginLeft: '10px', borderBottom: `2px solid ${brandColor}` }}>
+              <h2 style={{ fontWeight: '700', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '2px', color: brandColor, margin: '0 0 2px 0' }}>Expériences Professionnelles</h2>
             </div>
           </div>
 
-          {/* Timeline Line */}
-          <div className="absolute left-4 top-8 bottom-[-40px] w-[1px] -ml-[0.5px]" style={{ backgroundColor: brandColor }}></div>
-
-          <div className="pl-12 relative pb-6">
-            <div className="absolute w-2 h-2 bg-white rounded-full border-2 left-[11px] top-2" style={{ borderColor: brandColor }}></div>
-            <h3 className="font-bold text-slate-700 text-lg mb-2">Développeur Full-Stack</h3>
-            <ul className="list-disc list-inside text-sm text-slate-600 space-y-1.5 ml-1">
+          {/* Dev Full-Stack */}
+          <div style={{ paddingLeft: '36px', marginBottom: '12px' }}>
+            <h3 style={{ fontWeight: '700', color: '#334155', fontSize: '11px', margin: '0 0 4px 0' }}>Développeur Full-Stack</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px', lineHeight: '1.6', margin: 0 }}>
               <li>Conception, développement et maintenance d'applications web avec React et Node.js.</li>
               <li>Collaboration étroite pour transformer les maquettes (Figma) en interfaces utilisateur réactives.</li>
               <li>Gestion du déploiement, des mises à jour et de l'optimisation des performances.</li>
             </ul>
           </div>
 
-          {/* Projects subset */}
-          <div className="pl-12 relative pb-6">
-            <div className="absolute w-2 h-2 bg-white rounded-full border-2 left-[11px] top-2" style={{ borderColor: brandColor }}></div>
-            <h3 className="font-bold text-slate-700 text-lg mb-2">Projets Réalisés</h3>
-            <ul className="list-disc list-inside text-sm text-slate-600 space-y-1.5 ml-1">
+          {/* Projects */}
+          <div style={{ paddingLeft: '36px', marginBottom: '12px' }}>
+            <h3 style={{ fontWeight: '700', color: '#334155', fontSize: '11px', margin: '0 0 4px 0' }}>Projets Réalisés</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px', lineHeight: '1.6', margin: 0 }}>
               {projects.map((p, idx) => (
                 <li key={idx}>
-                  <strong className="text-slate-700">{p.title}</strong> ({p.tech.join(', ')})
+                  <strong style={{ color: '#334155' }}>{p.title}</strong> ({p.tech.join(', ')})
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Certifications and Formations subset */}
-          <div className="pl-12 relative pb-2">
-            <div className="absolute w-2 h-2 bg-white rounded-full border-2 left-[11px] top-2" style={{ borderColor: brandColor }}></div>
-            <h3 className="font-bold text-slate-700 text-lg mb-2">Certifications et Formations</h3>
-            <ul className="list-disc list-inside text-sm text-slate-600 space-y-1.5 ml-1">
-              <li>Licence Informatique -----&gt; Université de Labé (2024 - 2027)</li>
-              <li>React, Node.js (Full Stack) -----&gt; Autodidacte & Open Source</li>
+          {/* Certifications */}
+          <div style={{ paddingLeft: '36px' }}>
+            <h3 style={{ fontWeight: '700', color: '#334155', fontSize: '11px', margin: '0 0 4px 0' }}>Certifications et Formations</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '14px', color: '#475569', fontSize: '10px', lineHeight: '1.6', margin: 0 }}>
+              <li>Licence Informatique → Université de Labé (2024 - 2027)</li>
+              <li>React, Node.js (Full Stack) → Autodidacte & Open Source</li>
             </ul>
           </div>
-
         </div>
-
       </div>
     </div>
   );
