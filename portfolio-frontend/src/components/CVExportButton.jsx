@@ -19,8 +19,8 @@ export default function CVExportButton({ targetRef }) {
 
       // Capture the CV element as a canvas
       const canvas = await html2canvas(element, {
-        scale: 2,           // High resolution
-        useCORS: true,      // Allow cross-origin images
+        scale: 2,
+        useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
         logging: false,
@@ -30,11 +30,15 @@ export default function CVExportButton({ targetRef }) {
         height: element.scrollHeight,
       });
 
-      const imgData = canvas.toDataURL('image/jpeg', 0.98);
+      const imgData = canvas.toDataURL('image/jpeg', 1.0);
 
       // A4 dimensions in mm
       const pdfWidth = 210;
       const pdfHeight = 297;
+
+      // Calculate the image height to fit the full content on ONE page
+      const canvasRatio = canvas.width / canvas.height;
+      const imgHeightInPdf = pdfWidth / canvasRatio;
 
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -42,40 +46,16 @@ export default function CVExportButton({ targetRef }) {
         format: 'a4',
       });
 
-      // Scale image to fit A4 page
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const ratio = canvasWidth / canvasHeight;
-      const imgHeight = pdfWidth / ratio;
-
-      // If content fits in one page
-      if (imgHeight <= pdfHeight) {
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, imgHeight);
+      if (imgHeightInPdf <= pdfHeight) {
+        // Content fits in a single A4 page — center it vertically if needed
+        const yOffset = (pdfHeight - imgHeightInPdf) / 2;
+        pdf.addImage(imgData, 'JPEG', 0, yOffset > 5 ? 0 : 0, pdfWidth, imgHeightInPdf);
       } else {
-        // Multi-page support
-        let yOffset = 0;
-        while (yOffset < canvasHeight) {
-          const pageCanvas = document.createElement('canvas');
-          const pageHeight = Math.min(
-            canvasHeight - yOffset,
-            Math.floor((pdfHeight / pdfWidth) * canvasWidth)
-          );
-          pageCanvas.width = canvasWidth;
-          pageCanvas.height = pageHeight;
-
-          const ctx = pageCanvas.getContext('2d');
-          ctx.fillStyle = '#ffffff';
-          ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
-          ctx.drawImage(canvas, 0, -yOffset);
-
-          const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.98);
-          const pageImgHeight = (pageHeight / canvasWidth) * pdfWidth;
-
-          if (yOffset > 0) pdf.addPage();
-          pdf.addImage(pageImgData, 'JPEG', 0, 0, pdfWidth, pageImgHeight);
-
-          yOffset += pageHeight;
-        }
+        // Content is taller than A4 — scale it down to fit perfectly on one page
+        const scaledHeight = pdfHeight;
+        const scaledWidth = pdfHeight * canvasRatio;
+        const xOffset = (pdfWidth - scaledWidth) / 2;
+        pdf.addImage(imgData, 'JPEG', xOffset > 0 ? xOffset : 0, 0, scaledWidth > pdfWidth ? pdfWidth : scaledWidth, scaledHeight);
       }
 
       pdf.save('CV_Sory_Keita.pdf');
