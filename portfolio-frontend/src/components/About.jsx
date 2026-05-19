@@ -16,8 +16,8 @@ export default function About() {
               <span className="text-cyanAccent mr-2">01.</span> À propos de moi
             </h2>
             <div className="text-slate-400 font-sans space-y-4 text-lg leading-relaxed">
-              <p>
-                Passionné par le développement depuis mes débuts en programmation, je suis actuellement en Licence 2 Informatique à l'Université de Labé. Mon objectif est de créer des outils performants, accessibles et esthétiques.
+              <p className="text-slate-300 text-lg leading-relaxed text-justify relative z-10 mb-6 font-sans">
+                Passionné par le développement depuis mes débuts en programmation, je suis actuellement en Licence Informatique à l'Université de Labé. Mon objectif est de créer des outils performants, accessibles et esthétiques.
               </p>
               <p>
                 En tant que développeur orienté Full-Stack et Mobile, j'affectionne particulièrement l'écosystème React et Node.js. Je m'efforce toujours d'apprendre les meilleures pratiques et de relever de nouveaux défis.
@@ -34,8 +34,8 @@ export default function About() {
               <h3 className="font-mono text-xl text-slate-200 mb-4">Parcours Académique</h3>
               <div className="border-l-2 border-slate-700 pl-4 space-y-6">
                 <div>
-                  <h4 className="text-slate-100 font-bold">Licence 2 Informatique</h4>
-                  <p className="text-cyanAccent font-mono text-sm">Université de Labé • 2023 - Présent</p>
+                  <h4 className="text-slate-100 font-bold">Licence Informatique</h4>
+                  <p className="text-cyanAccent font-mono text-sm">Université de Labé • 2024 - 2027</p>
                 </div>
               </div>
             </div>

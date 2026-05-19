@@ -161,7 +161,7 @@ const CV = forwardRef((props, ref) => {
             <div className="absolute w-2 h-2 bg-white rounded-full border-2 left-[11px] top-2" style={{ borderColor: brandColor }}></div>
             <h3 className="font-bold text-slate-700 text-lg mb-2">Certifications et Formations</h3>
             <ul className="list-disc list-inside text-sm text-slate-600 space-y-1.5 ml-1">
-              <li>Licence 2 Informatique -----&gt; Université de Labé (En cours)</li>
+              <li>Licence Informatique -----&gt; Université de Labé (2024 - 2027)</li>
               <li>React, Node.js (Full Stack) -----&gt; Autodidacte & Open Source</li>
             </ul>
           </div>
