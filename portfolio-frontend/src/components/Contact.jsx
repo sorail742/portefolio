@@ -18,7 +18,9 @@ export default function Contact() {
 
     const templateParams = {
       from_name: formData.name,
+      name: formData.name, // Added to match their template {{name}}
       from_email: formData.email,
+      email: formData.email, // Added just in case
       reply_to: formData.email,
       message: formData.message,
     };
