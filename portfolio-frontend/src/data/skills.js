@@ -1,6 +1,6 @@
 export const skills = {
-    "Frontend & Mobile": ["React", "React Native", "Flutter", "Tailwind CSS", "Vite"],
+    "Frontend & Mobile": ["React", "Flutter", "Tailwind CSS", "Vite", "HTML", "CSS"],
     "Backend": ["Node.js"],
     "Bases de Données": ["PostgreSQL", "MySQL", "MariaDB", "MongoDB", "SQLite"],
-    "Outils": ["VS Code", "GitHub", "Figma"]
+    "Outils & DevOps": ["VS Code", "GitHub", "n8n"]
 };

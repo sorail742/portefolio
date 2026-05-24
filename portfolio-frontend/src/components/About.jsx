@@ -31,12 +31,45 @@ export default function About() {
             </div>
 
             <div className="mt-10">
-              <h3 className="font-mono text-xl text-slate-200 mb-4">Parcours Académique</h3>
-              <div className="border-l-2 border-slate-700 pl-4 space-y-6">
-                <div>
-                  <h4 className="text-slate-100 font-bold">Licence Informatique</h4>
-                  <p className="text-cyanAccent font-mono text-sm">Université de Labé • 2024 - 2027</p>
+              <h3 className="font-mono text-xl text-slate-200 mb-6">Formation & Certifications</h3>
+              <div className="border-l-2 border-slate-700/50 pl-6 space-y-6 relative">
+
+                <div className="relative">
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-cyanAccent border-4 border-darkBg"></div>
+                  <h4 className="text-slate-100 font-bold text-[15px]">Licence Informatique</h4>
+                  <p className="text-cyanAccent font-mono text-sm mt-1">Université de Labé • 2024 - 2027</p>
                 </div>
+
+                <div className="relative">
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-500 border-4 border-darkBg"></div>
+                  <h4 className="text-slate-100 font-bold text-[15px]">Formation Automatisation avec n8n</h4>
+                  <p className="text-slate-400 font-mono text-[13px] mt-1">Certificat en cours • Mai 2026</p>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-500 border-4 border-darkBg"></div>
+                  <h4 className="text-slate-100 font-bold text-[15px]">Formation Cybersécurité & Analyse de données</h4>
+                  <p className="text-slate-400 font-mono text-[13px] mt-1">Attestation en cours • Avril 2026</p>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-500 border-4 border-darkBg"></div>
+                  <h4 className="text-slate-100 font-bold text-[15px]">Formation Full-Stack (React, Node, MongoDB)</h4>
+                  <p className="text-slate-400 font-mono text-[13px] mt-1">Simplon, Univ. de Labé • Vacances 2025</p>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-500 border-4 border-darkBg"></div>
+                  <h4 className="text-slate-100 font-bold text-[15px]">Attestation Bases de la Sécurité Informatique</h4>
+                  <p className="text-slate-400 font-mono text-[13px] mt-1">Orange • Juin 2025</p>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-500 border-4 border-darkBg"></div>
+                  <h4 className="text-slate-100 font-bold text-[15px]">Certificat ReactJS</h4>
+                  <p className="text-slate-400 font-mono text-[13px] mt-1">Club des jeunes programmeurs • Mai 2025</p>
+                </div>
+
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ export default function Projects() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl font-mono font-bold mb-12 flex items-center">
-            <span className="text-cyanAccent mr-2">03.</span> Projets Récents
+            <span className="text-cyanAccent mr-2">03.</span> Projets (En cours)
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
