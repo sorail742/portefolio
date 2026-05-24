@@ -61,7 +61,7 @@ export default function Hero() {
           <h1 className="text-5xl md:text-7xl font-bold font-mono text-slate-100 mb-6">
             Sory Keita.
           </h1>
-          <h2 className="text-4xl md:text-6xl font-bold font-mono text-slate-400 mb-8 h-[120px] md:h-[auto]">
+          <h2 className="text-4xl md:text-6xl font-bold font-mono text-slate-400 mb-8 min-h-[96px] md:min-h-[auto] md:whitespace-nowrap">
             <Typewriter texts={['Étudiant L2 Informatique', 'Développeur Full-Stack', 'React · Node.js · Mobile']} />
           </h2>
           <p className="text-xl text-slate-400 mb-10 max-w-2xl font-sans">
