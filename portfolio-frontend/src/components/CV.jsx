@@ -101,7 +101,7 @@ const CV = forwardRef((props, ref) => {
             <li style={{ marginBottom: '3px' }}>Veille Technologique</li>
             <li style={{ marginBottom: '3px' }}>Open Source</li>
             <li style={{ marginBottom: '3px' }}>Système embarqué</li>
-            <li style={{ marginBottom: '3px' }}>Sermon islamique</li>
+            <li style={{ marginBottom: '3px' }}>Sermon et Séries islamiques </li>
             <li>Sport</li>
           </ul>
         </div>
