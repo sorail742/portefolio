@@ -53,7 +53,7 @@ const CV = forwardRef((props, ref) => {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <User size={16} style={{ color: brandColor, flexShrink: 0 }} />
-            <a href="https://sorail742.github.io/portefolio" style={{ color: '#334155', fontSize: '13px', textDecoration: 'none' }}>Voir mon Portfolio Web</a>
+            <a href="https://portefolio-six-chi.vercel.app/" style={{ color: '#334155', fontSize: '13px', textDecoration: 'none' }}>portefolio-six-chi.vercel.app</a>
           </div>
         </div>
 
