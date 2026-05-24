@@ -17,7 +17,7 @@ export default function About() {
             </h2>
             <div className="text-slate-400 font-sans space-y-4 text-lg leading-relaxed">
               <p className="text-slate-300 text-lg leading-relaxed text-justify relative z-10 mb-6 font-sans">
-                Passionné par le développement depuis mes débuts en programmation, je suis actuellement en Licence Informatique à l'Université de Labé. Mon objectif est de créer des outils performants, accessibles et esthétiques.
+                Passionné par le développement depuis mes débuts en programmation, je suis actuellement en 2ème année de Licence Informatique à l'Université de Labé. Mon objectif est de créer des outils performants, accessibles et esthétiques.
               </p>
               <p>
                 En tant que développeur orienté Full-Stack et Mobile, j'affectionne particulièrement l'écosystème React et Node.js. Je m'efforce toujours d'apprendre les meilleures pratiques et de relever de nouveaux défis.

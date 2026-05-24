@@ -47,9 +47,13 @@ const CV = forwardRef((props, ref) => {
             <MapPin size={16} style={{ color: brandColor, flexShrink: 0 }} />
             <span style={{ color: '#334155', fontSize: '13px' }}>Labé, Guinée</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
             <Github size={16} style={{ color: brandColor, flexShrink: 0 }} />
-            <span style={{ color: '#334155', fontSize: '13px' }}>github.com/sorail742</span>
+            <a href="https://github.com/sorail742" style={{ color: '#334155', fontSize: '13px', textDecoration: 'none' }}>github.com/sorail742</a>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <User size={16} style={{ color: brandColor, flexShrink: 0 }} />
+            <a href="https://sorail742.github.io/portefolio" style={{ color: '#334155', fontSize: '13px', textDecoration: 'none' }}>Voir mon Portfolio Web</a>
           </div>
         </div>
 
@@ -127,8 +131,8 @@ const CV = forwardRef((props, ref) => {
 
           <div style={{ paddingLeft: '48px', position: 'relative', paddingBottom: '10px' }}>
             <div style={{ position: 'absolute', width: '8px', height: '8px', backgroundColor: 'white', borderRadius: '50%', border: `2px solid ${brandColor}`, left: '12px', top: '6px' }}></div>
-            <p style={{ fontSize: '13px', color: '#475569', lineHeight: '1.6', textAlign: 'justify', margin: 0 }}>
-              Développeur web passionné et autodidacte, j'ai renforcé mes compétences à travers divers projets concrets et des défis techniques variés. Curieux et motivé, j'évolue continuellement dans un environnement en constante évolution. En quête de nouveaux challenges, je souhaite intégrer une équipe dynamique à laquelle je pourrais apporter ma rigueur, ma créativité et ma soif d'apprendre.
+            <p style={{ fontSize: '12px', color: '#475569', lineHeight: '1.6', textAlign: 'justify', margin: 0 }}>
+              Développeur Full-Stack passionné et autodidacte avec une solide expérience pratique sur des projets web (React, Node.js, PostgreSQL, MongoDB). Actuellement en <strong>2ème année de Licence Informatique</strong> à l'Université de Labé, je développe activement plusieurs applications (santé, agriculture, entreprise). Je recherche un stage pour mettre mes compétences au service d'une équipe ambitieuse et continuer à progresser.
             </p>
           </div>
         </div>
@@ -150,7 +154,10 @@ const CV = forwardRef((props, ref) => {
           {/* Dev Full-Stack */}
           <div style={{ paddingLeft: '48px', position: 'relative', marginBottom: '15px' }}>
             <div style={{ position: 'absolute', width: '8px', height: '8px', backgroundColor: 'white', borderRadius: '50%', border: `2px solid ${brandColor}`, left: '12px', top: '6px' }}></div>
-            <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: '0 0 6px 0' }}>Développeur Full-Stack</h3>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+              <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: 0 }}>Développeur Full-Stack Freelance</h3>
+              <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 'bold' }}>2024 - Présent</span>
+            </div>
             <ul style={{ listStyle: 'disc', paddingLeft: '18px', color: '#475569', fontSize: '13px', lineHeight: '1.5', margin: 0 }}>
               <li style={{ marginBottom: '3px' }}>Conception, développement et maintenance d'applications web avec React et Node.js.</li>
               <li style={{ marginBottom: '3px' }}>Automatisation de processus et création de workflows avec n8n.</li>
@@ -163,9 +170,12 @@ const CV = forwardRef((props, ref) => {
             <div style={{ position: 'absolute', width: '8px', height: '8px', backgroundColor: 'white', borderRadius: '50%', border: `2px solid ${brandColor}`, left: '12px', top: '6px' }}></div>
             <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: '0 0 6px 0' }}>Projets (En cours)</h3>
             <ul style={{ listStyle: 'disc', paddingLeft: '18px', color: '#475569', fontSize: '13px', lineHeight: '1.5', margin: 0 }}>
-              {projects.map((p, idx) => (
-                <li key={idx} style={{ marginBottom: '2px' }}>
-                  <strong style={{ color: '#334155' }}>{p.title}</strong> ({p.tech.join(', ')})
+              {projects.filter(p => p.title !== 'MigrantConnect' && p.title !== 'CodeMaster').map((p, idx) => (
+                <li key={idx} style={{ marginBottom: '6px' }}>
+                  <strong style={{ color: '#334155' }}>{p.title}</strong>
+                  <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px', display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                    <span style={{ color: brandColor, fontWeight: 'bold' }}>Stack:</span> {p.tech.join(', ')}
+                  </div>
                 </li>
               ))}
             </ul>
