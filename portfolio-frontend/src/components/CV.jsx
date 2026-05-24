@@ -60,8 +60,9 @@ const CV = forwardRef((props, ref) => {
           <div style={{ marginBottom: '12px' }}>
             <h3 style={{ fontWeight: 'bold', color: '#1e293b', fontSize: '13px', marginBottom: '5px' }}>Frontend & Mobile</h3>
             <ul style={{ margin: 0, paddingLeft: '18px', color: '#475569', fontSize: '12px', lineHeight: '1.4' }}>
-              <li>React, React Native</li>
+              <li>React, Flutter</li>
               <li>Tailwind CSS, Vite</li>
+              <li>HTML, CSS</li>
             </ul>
           </div>
           <div style={{ marginBottom: '12px' }}>
@@ -74,6 +75,7 @@ const CV = forwardRef((props, ref) => {
             <h3 style={{ fontWeight: 'bold', color: '#1e293b', fontSize: '13px', marginBottom: '5px' }}>Base de Données</h3>
             <ul style={{ margin: 0, paddingLeft: '18px', color: '#475569', fontSize: '12px', lineHeight: '1.4' }}>
               <li>PostgreSQL, MySQL</li>
+              <li>MariaDB, MongoDB</li>
             </ul>
           </div>
         </div>
@@ -94,6 +96,8 @@ const CV = forwardRef((props, ref) => {
           <ul style={{ margin: 0, paddingLeft: '18px', color: '#475569', fontSize: '13px', lineHeight: '1.5' }}>
             <li style={{ marginBottom: '3px' }}>Veille Technologique</li>
             <li style={{ marginBottom: '3px' }}>Open Source</li>
+            <li style={{ marginBottom: '3px' }}>Système embarqué</li>
+            <li style={{ marginBottom: '3px' }}>Sermon islamique</li>
             <li>Sport</li>
           </ul>
         </div>
@@ -144,23 +148,23 @@ const CV = forwardRef((props, ref) => {
           <div style={{ position: 'absolute', left: '15px', top: '32px', bottom: '0', width: '2px', backgroundColor: brandColor }}></div>
 
           {/* Dev Full-Stack */}
-          <div style={{ paddingLeft: '48px', position: 'relative', marginBottom: '25px' }}>
+          <div style={{ paddingLeft: '48px', position: 'relative', marginBottom: '15px' }}>
             <div style={{ position: 'absolute', width: '8px', height: '8px', backgroundColor: 'white', borderRadius: '50%', border: `2px solid ${brandColor}`, left: '12px', top: '6px' }}></div>
             <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: '0 0 6px 0' }}>Développeur Full-Stack</h3>
             <ul style={{ listStyle: 'disc', paddingLeft: '18px', color: '#475569', fontSize: '13px', lineHeight: '1.5', margin: 0 }}>
               <li style={{ marginBottom: '3px' }}>Conception, développement et maintenance d'applications web avec React et Node.js.</li>
-              <li style={{ marginBottom: '3px' }}>Collaboration étroite pour transformer les maquettes (Figma) en interfaces utilisateur réactives.</li>
+              <li style={{ marginBottom: '3px' }}>Automatisation de processus et création de workflows avec n8n.</li>
               <li>Gestion du déploiement, des mises à jour et de l'optimisation des performances.</li>
             </ul>
           </div>
 
           {/* Projects */}
-          <div style={{ paddingLeft: '48px', position: 'relative', marginBottom: '25px' }}>
+          <div style={{ paddingLeft: '48px', position: 'relative', marginBottom: '15px' }}>
             <div style={{ position: 'absolute', width: '8px', height: '8px', backgroundColor: 'white', borderRadius: '50%', border: `2px solid ${brandColor}`, left: '12px', top: '6px' }}></div>
-            <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: '0 0 6px 0' }}>Projets Réalisés</h3>
+            <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: '0 0 6px 0' }}>Projets (En cours)</h3>
             <ul style={{ listStyle: 'disc', paddingLeft: '18px', color: '#475569', fontSize: '13px', lineHeight: '1.5', margin: 0 }}>
               {projects.map((p, idx) => (
-                <li key={idx} style={{ marginBottom: '4px' }}>
+                <li key={idx} style={{ marginBottom: '2px' }}>
                   <strong style={{ color: '#334155' }}>{p.title}</strong> ({p.tech.join(', ')})
                 </li>
               ))}
@@ -171,9 +175,13 @@ const CV = forwardRef((props, ref) => {
           <div style={{ paddingLeft: '48px', position: 'relative', paddingBottom: '10px' }}>
             <div style={{ position: 'absolute', width: '8px', height: '8px', backgroundColor: 'white', borderRadius: '50%', border: `2px solid ${brandColor}`, left: '12px', top: '6px' }}></div>
             <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: '0 0 6px 0' }}>Certifications et Formations</h3>
-            <ul style={{ listStyle: 'disc', paddingLeft: '18px', color: '#475569', fontSize: '13px', lineHeight: '1.5', margin: 0 }}>
-              <li style={{ marginBottom: '4px' }}>Licence Informatique — Université de Labé (2024 - 2027)</li>
-              <li>React, Node.js (Full Stack) — Autodidacte & Open Source</li>
+            <ul style={{ listStyle: 'disc', paddingLeft: '18px', color: '#475569', fontSize: '11px', lineHeight: '1.4', margin: 0 }}>
+              <li style={{ marginBottom: '2px' }}><strong>Licence Informatique</strong> — Univ. de Labé (2024 - 2027)</li>
+              <li style={{ marginBottom: '2px' }}><strong>Formation Automatisation (n8n)</strong> — Certificat en cours (Mai 2026)</li>
+              <li style={{ marginBottom: '2px' }}><strong>Formation Cybersécurité & Data</strong> — Attestation en cours (Avril 2026)</li>
+              <li style={{ marginBottom: '2px' }}><strong>Formation ReactJS, NodeJS, MongoDB</strong> — Simplon, Univ. de Labé (Vacances 2025)</li>
+              <li style={{ marginBottom: '2px' }}><strong>Attestation Bases Sécurité Info.</strong> — Orange (Juin 2025)</li>
+              <li><strong>Certificat ReactJS</strong> — Club des jeunes programmeurs, Univ. Labé (Mai 2025)</li>
             </ul>
           </div>
 

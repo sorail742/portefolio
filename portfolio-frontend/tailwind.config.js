@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily: {
         mono: ['"JetBrains Mono"', 'monospace'],
-        sans: ['"Inter"', 'sans-serif'],
+        sans: ['"Outfit"', 'sans-serif'],
       },
       colors: {
         darkBg: '#0a0f1e',

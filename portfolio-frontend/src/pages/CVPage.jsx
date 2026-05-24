@@ -6,6 +6,7 @@ import CV from '../components/CV';
 import CVExportButton from '../components/CVExportButton';
 
 export default function CVPage() {
+  // ref for exporting CV
   const targetRef = useRef();
 
   useEffect(() => {

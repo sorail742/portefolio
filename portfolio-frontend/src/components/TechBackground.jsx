@@ -116,14 +116,14 @@ const TechBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] bg-gradient-to-br from-[#0a2540] via-[#0a1526] to-[#030816] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-[-1] bg-gradient-to-br from-[#071324] via-[#050b14] to-[#01030a] overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-60"
+        className="w-full h-full opacity-25"
       />
       {/* Cyan vibrant glow at the top left to match the HUD rings, and bottom right for depth */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-cyan-600/20 rounded-full blur-[120px]"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[100px]"></div>
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-cyan-600/10 rounded-full blur-[120px]"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/5 rounded-full blur-[100px]"></div>
     </div>
   );
 };
