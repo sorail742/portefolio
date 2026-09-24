@@ -35,13 +35,13 @@ export default function Projects() {
 
                   {project.image ? (
                     <>
-                      <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" />
+                      <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" />
                       <div className="absolute inset-0 bg-slate-900/30 group-hover:bg-transparent transition-colors duration-500"></div>
 
                       {/* Premium Mobile Overlay */}
                       {project.mobileImage && (
                         <div className="absolute -bottom-4 right-4 w-16 h-32 md:w-20 md:h-40 bg-black rounded-xl border-2 border-slate-700/50 shadow-2xl overflow-hidden transform rotate-[-5deg] group-hover:rotate-0 group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 z-20">
-                          <img src={project.mobileImage} alt={`${project.title} mobile`} className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100" />
+                          <img src={project.mobileImage} alt={`${project.title} mobile`} loading="lazy" className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100" />
                         </div>
                       )}
                     </>
@@ -66,20 +66,20 @@ export default function Projects() {
 
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map(t => (
-                      <span key={t} className="text-xs font-mono text-greenAccent">
+                      <span key={t} className="px-2 py-0.5 rounded text-xs font-mono text-greenAccent bg-greenAccent/10">
                         {t}
                       </span>
                     ))}
                   </div>
 
                   <div className="flex gap-4 mt-auto">
-                    {project.github && (
-                      <a href={project.github} className="text-slate-400 hover:text-cyanAccent transition-colors" title="Code Source">
+                    {project.github && project.github !== '#' && (
+                      <a href={project.github} target="_blank" rel="noreferrer" aria-label={`Code source de ${project.title}`} className="text-slate-400 hover:text-cyanAccent transition-colors" title="Code Source">
                         <Github size={20} />
                       </a>
                     )}
                     {project.demo && (
-                      <a href={project.demo} className="text-slate-400 hover:text-cyanAccent transition-colors" title="Voir l'application">
+                      <a href={project.demo} target="_blank" rel="noreferrer" aria-label={`Démo de ${project.title}`} className="text-slate-400 hover:text-cyanAccent transition-colors" title="Voir l'application">
                         <ExternalLink size={20} />
                       </a>
                     )}

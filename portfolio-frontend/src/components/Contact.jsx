@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Smartphone, Send, CheckCircle, XCircle } from 'lucide-react';
+import { Mail, Github, Linkedin, Smartphone, MapPin, Send, CheckCircle, XCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 export default function Contact() {
@@ -27,15 +27,14 @@ export default function Contact() {
     };
 
     emailjs.send(serviceID, templateID, templateParams, publicKey)
-      .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
+      .then(() => {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
 
         // Reset status after 5 seconds
         setTimeout(() => setStatus('idle'), 5000);
       }, (err) => {
-        console.log('FAILED...', err);
+        console.error('Échec de l\'envoi du message', err);
         setStatus('error');
 
         // Reset status after 5 seconds
@@ -70,12 +69,18 @@ export default function Contact() {
                 <a href="mailto:keithsorail@gmail.com" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
                   <Mail className="mr-4 group-hover:scale-110 transition-transform" /> keithsorail@gmail.com
                 </a>
-                <div className="flex items-center text-slate-400">
-                  <Smartphone className="mr-4" /> +224 624 284 874
-                </div>
+                <a href="tel:+224624284874" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
+                  <Smartphone className="mr-4 group-hover:scale-110 transition-transform" /> +224 624 284 874
+                </a>
                 <a href="https://github.com/sorail742" target="_blank" rel="noreferrer" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
                   <Github className="mr-4 group-hover:scale-110 transition-transform" /> github.com/sorail742
                 </a>
+                <a href="https://linkedin.com/in/sory-keita-7434b239a/" target="_blank" rel="noreferrer" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
+                  <Linkedin className="mr-4 group-hover:scale-110 transition-transform" /> LinkedIn
+                </a>
+                <div className="flex items-center text-slate-400">
+                  <MapPin className="mr-4" /> Labé, Guinée
+                </div>
               </div>
             </div>
 

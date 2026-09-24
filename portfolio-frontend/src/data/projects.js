@@ -2,7 +2,7 @@ export const projects = [
     {
         title: "HealthBridge",
         description: "Application médicale complète facilitant la communication entre patients et professionnels de santé. Intégration de messagerie en temps réel, gestion de rendez-vous et dossiers médicaux.",
-        tech: ["React", "Node.js", "PostgreSQL", " tailwind css", "socket.io"],
+        tech: ["React", "Node.js", "PostgreSQL", "Tailwind CSS", "Socket.io"],
         github: "#",
         demo: null,
         image: "/projects-img/healthbridge-desktop.png",
@@ -11,7 +11,7 @@ export const projects = [
     {
         title: "Cultivateur Market",
         description: "Plateforme e-commerce permettant de connecter directement les producteurs locaux aux consommateurs. Système de gestion d'inventaire, de paniers et paiements sécurisés.",
-        tech: ["React", "Node.js", "MongoDB", "Tailwind CSS", "socket.io"],
+        tech: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Socket.io"],
         github: "#",
         demo: null,
         image: "/projects-img/cultivateur-desktop.png",
@@ -20,7 +20,7 @@ export const projects = [
     {
         title: "MigrantConnect",
         description: "Plateforme d'intégration pour les migrants offrant des ressources, une communauté d'entraide et des offres d'emploi locales, avec un support multilingue.",
-        tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "socket.io"],
+        tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Socket.io"],
         github: "#",
         demo: null,
         image: "/projects-img/migrantconnect-desktop.png",
@@ -29,7 +29,7 @@ export const projects = [
     {
         title: "CodeMaster",
         description: "Plateforme d'apprentissage numérique destinée à aider les étudiants à mieux comprendre les langages de programmation grâce à des leçons interactives.",
-        tech: ["flutter", "Node.js", "MongoDB", "socket.io", "dart"],
+        tech: ["Flutter", "Dart", "Node.js", "MongoDB", "Socket.io"],
         github: "#",
         demo: null,
         image: null,
@@ -38,7 +38,7 @@ export const projects = [
     {
         title: "BCAConnect",
         description: "Application conçue avec un design ultra premium, incluant une gestion des notifications, rapports de litiges, et tableau de bord exécutif.",
-        tech: ["React", "Tailwind CSS", "Node.js", "socket.io", "PostgreSQL"],
+        tech: ["React", "Tailwind CSS", "Node.js", "Socket.io", "PostgreSQL"],
         github: "#",
         demo: null,
         image: "/projects-img/bcaconnect-desktop.png",

@@ -62,17 +62,17 @@ export default function Hero() {
             Sory Keita.
           </h1>
           <h2 className="text-4xl md:text-6xl font-bold font-mono text-slate-400 mb-8 min-h-[96px] md:min-h-[auto] md:whitespace-nowrap">
-            <Typewriter texts={['Étudiant L2 Informatique', 'Développeur Full-Stack', 'React · Node.js · Mobile']} />
+            <Typewriter texts={['Étudiant L3 Informatique', 'Développeur Full-Stack', 'React · Node.js · Mobile']} />
           </h2>
           <p className="text-xl text-slate-400 mb-10 max-w-2xl font-sans">
             Je construis des applications web et mobile performantes depuis Labé, Guinée.
           </p>
 
-          <div className="flex gap-4">
-            <a href="#projects" className="px-8 py-4 bg-cyanAccent text-darkBg font-bold rounded hover:bg-cyanAccent/90 transition-colors">
+          <div className="flex flex-wrap gap-4">
+            <a href="#projects" className="px-6 sm:px-8 py-4 whitespace-nowrap bg-cyanAccent text-darkBg font-bold rounded hover:bg-cyanAccent/90 transition-colors">
               Voir mes projets
             </a>
-            <Link to="/cv" className="px-8 py-4 border border-slate-600 text-slate-300 font-bold rounded hover:border-cyanAccent hover:text-cyanAccent transition-colors">
+            <Link to="/cv" className="px-6 sm:px-8 py-4 whitespace-nowrap border border-slate-600 text-slate-300 font-bold rounded hover:border-cyanAccent hover:text-cyanAccent transition-colors">
               Voir mon CV
             </Link>
           </div>
