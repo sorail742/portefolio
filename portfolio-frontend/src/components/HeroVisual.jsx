@@ -1,21 +1,21 @@
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Rocket, CheckCircle2 } from 'lucide-react';
-import { projects } from '../data/projects';
+import { Globe2, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { techColors } from '../data/techColors';
 
-// Technologies en orbite autour de la photo (couleurs officielles des marques)
+// Technologies en orbite autour de la photo
 const innerOrbit = [
-  { label: 'React', color: '#61DAFB' },
-  { label: 'Node.js', color: '#5FA04E' },
-  { label: 'Flutter', color: '#54C5F8' },
+  { label: 'React', color: techColors['React'] },
+  { label: 'Node.js', color: techColors['Node.js'] },
+  { label: 'Flutter', color: techColors['Flutter'] },
 ];
 const outerOrbit = [
-  { label: 'PostgreSQL', color: '#4169E1' },
-  { label: 'MongoDB', color: '#47A248' },
-  { label: 'Tailwind', color: '#38BDF8' },
-  { label: 'Socket.io', color: '#E2E8F0' },
-  { label: 'n8n', color: '#EA4B71' },
+  { label: 'PostgreSQL', color: techColors['PostgreSQL'] },
+  { label: 'MongoDB', color: techColors['MongoDB'] },
+  { label: 'Tailwind', color: techColors['Tailwind'] },
+  { label: 'Socket.io', color: techColors['Socket.io'] },
+  { label: 'n8n', color: techColors['n8n'] },
 ];
 
 // Place les badges régulièrement sur un cercle ; l'anneau tourne,
@@ -99,8 +99,8 @@ export default function HeroVisual() {
         {/* Halo derrière la photo */}
         <div className="absolute inset-[18%] rounded-full bg-gradient-to-tr from-cyanAccent/30 via-blue-500/20 to-greenAccent/30 blur-3xl" />
 
-        <Orbit items={outerOrbit} radius={250} duration={60} reverse />
-        <Orbit items={innerOrbit} radius={175} duration={40} />
+        <Orbit items={outerOrbit} radius={260} duration={60} reverse />
+        <Orbit items={innerOrbit} radius={165} duration={40} />
 
         {/* Photo dans un anneau dégradé qui tourne */}
         <div className="absolute left-1/2 top-1/2 w-[230px] h-[230px] -ml-[115px] -mt-[115px]" style={{ transform: 'translateZ(40px)' }}>
@@ -128,14 +128,14 @@ export default function HeroVisual() {
           <p>{'}'}</p>
         </FloatingCard>
 
-        {/* Projets livrés */}
+        {/* Travail à distance */}
         <FloatingCard className="right-0 top-[18%] px-4 py-3 flex items-center gap-3" delay={0.2}>
           <div className="w-9 h-9 rounded-lg bg-cyanAccent/15 text-cyanAccent flex items-center justify-center">
-            <Rocket size={18} />
+            <Globe2 size={18} />
           </div>
           <div>
-            <p className="font-display text-xl font-bold text-slate-100 leading-none">{projects.length}</p>
-            <p className="text-[11px] text-slate-400 mt-1">{t('hero.stats.projects')}</p>
+            <p className="text-sm font-semibold text-slate-100 leading-none">{t('hero.visual.remote')}</p>
+            <p className="text-[11px] text-slate-400 mt-1">{t('hero.visual.remoteSub')}</p>
           </div>
         </FloatingCard>
 

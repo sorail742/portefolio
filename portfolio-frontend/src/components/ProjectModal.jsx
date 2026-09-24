@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, Github, ExternalLink, Smartphone, Monitor } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import ProjectPlaceholder from './ProjectPlaceholder';
 
 // Fiche détaillée d'un projet (captures desktop + mobile, technos, liens)
 export default function ProjectModal({ project, onClose }) {
@@ -57,8 +58,8 @@ export default function ProjectModal({ project, onClose }) {
             )}
           </div>
         ) : (
-          <div className="h-48 bg-gradient-to-br from-blue-900/40 to-cyan-900/40 flex items-center justify-center">
-            <span className="text-5xl text-slate-500 font-mono">&lt;{project.title.substring(0, 3)}/&gt;</span>
+          <div className="relative h-64 group">
+            <ProjectPlaceholder title={project.title} large />
           </div>
         )}
 

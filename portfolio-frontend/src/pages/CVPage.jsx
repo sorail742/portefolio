@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -8,16 +8,14 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 export default function CVPage() {
   const { t } = useLanguage();
-  // ref for exporting CV
-  const targetRef = useRef();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="min-h-screen bg-darkBg text-slate-100 py-12 px-4">
-      <div className="max-w-[210mm] mx-auto mb-8">
+    <div className="min-h-screen bg-darkBg text-slate-100 py-12 px-4 print:p-0 print:bg-white print:min-h-0">
+      <div className="max-w-[210mm] mx-auto mb-8 print:hidden">
         <Link to="/" className="inline-flex items-center text-cyanAccent hover:text-cyanAccent/80 font-mono transition-colors">
           <ArrowLeft className="mr-2" size={20} /> {t('cv.back')}
         </Link>
@@ -27,14 +25,14 @@ export default function CVPage() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="pb-24 w-full overflow-x-auto flex justify-start md:justify-center p-4 scrollbar-hide"
+        className="pb-24 w-full overflow-x-auto flex justify-start md:justify-center p-4 scrollbar-hide print:p-0 print:overflow-visible"
       >
         <div style={{ minWidth: "210mm" }}>
-          <CV ref={targetRef} />
+          <CV />
         </div>
       </motion.div>
 
-      <CVExportButton targetRef={targetRef} />
+      <CVExportButton />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SectionTitle from './SectionTitle';
 import { Globe, LayoutDashboard, Smartphone, Workflow, ArrowRight } from 'lucide-react';
 import { services, process } from '../data/services';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -9,16 +10,14 @@ const icons = { Globe, LayoutDashboard, Smartphone, Workflow };
 export default function Services() {
   const { t, tr } = useLanguage();
   return (
-    <section id="services" className="py-24 px-4 relative">
+    <section id="services" className="py-16 md:py-20 px-4 relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 flex items-baseline">
-            <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">03.</span> {t('services.title')}
-          </h2>
+          <SectionTitle number="03" className="mb-4">{t('services.title')}</SectionTitle>
           <p className="text-slate-400 text-lg max-w-2xl mb-12">
             {t('services.intro')}
           </p>

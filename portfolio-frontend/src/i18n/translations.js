@@ -26,7 +26,7 @@ export const translations = {
             ctaCv: "Voir mon CV",
             pressKey: "Appuyez sur",
             stats: { projects: "Projets réalisés", tech: "Technologies", training: "Formations validées" },
-            visual: { available: "Disponible", availableSub: "Emploi · Freelance · Stage" },
+            visual: { available: "Disponible", availableSub: "Emploi · Freelance · Stage", remote: "Télétravail", remoteSub: "Ouvert aux clients du monde entier" },
         },
         about: {
             title: "À propos de moi",
@@ -44,18 +44,22 @@ export const translations = {
             p3d: ", sur place ou en télétravail.",
             remote: "Télétravail possible",
             education: "Formation & Certifications",
+            facts: {
+                location: "Basé à", languages: "Langues", languagesValue: "Français, Malinké, Anglais technique",
+                studies: "Études", studiesValue: "Licence 3 Informatique",
+            },
         },
         skills: {
             title: "Compétences",
             headline1: "Je conçois des applications",
-            headline2: "Rapides & Sécurisées",
-            intro: "Du front-end au back-end, je construis des solutions robustes et évolutives : interfaces réactives, API sécurisées, temps réel avec Socket.io et bases de données relationnelles ou NoSQL.",
-            webMobile: "Développement Mobile & Web",
-            backend: "Backend & Système",
-            categories: {
-                "Frontend & Mobile": "Frontend & Mobile", "Backend": "Backend",
-                "Bases de Données": "Bases de Données", "Outils & DevOps": "Outils & DevOps",
-            },
+            headline2: "rapides et sécurisées.",
+            intro: "Du front-end au back-end, je construis des solutions robustes et évolutives, avec un code clair et facile à maintenir.",
+            points: [
+                "Interfaces React réactives, accessibles et responsive",
+                "API REST et temps réel avec Node.js et Socket.io",
+                "Applications mobiles Flutter connectées à vos données",
+            ],
+            editor: { explorer: "Explorateur", problems: "problème" },
         },
         services: {
             title: "Ce que je peux faire pour vous",
@@ -115,7 +119,7 @@ export const translations = {
             switchLang: "Switch to English",
         },
         scrollTop: "Retour en haut",
-        cv: { back: "Retour au portfolio", download: "Télécharger en PDF", generating: "Génération..." },
+        cv: { back: "Retour au portfolio", download: "Télécharger en PDF", downloadHint: "Choisissez « Enregistrer au format PDF » dans la fenêtre d'impression" },
     },
 
     en: {
@@ -143,7 +147,7 @@ export const translations = {
             ctaCv: "View my CV",
             pressKey: "Press",
             stats: { projects: "Projects built", tech: "Technologies", training: "Certifications earned" },
-            visual: { available: "Available now", availableSub: "Full-time · Freelance · Internship" },
+            visual: { available: "Available now", availableSub: "Full-time · Freelance · Internship", remote: "Remote ready", remoteSub: "Open to clients worldwide" },
         },
         about: {
             title: "About me",
@@ -161,18 +165,22 @@ export const translations = {
             p3d: ", on-site or remote.",
             remote: "Remote friendly",
             education: "Education & Certifications",
+            facts: {
+                location: "Based in", languages: "Languages", languagesValue: "French, Malinke, technical English",
+                studies: "Studies", studiesValue: "3rd-year CS Bachelor's",
+            },
         },
         skills: {
             title: "Skills",
             headline1: "I build applications that are",
-            headline2: "Fast & Secure",
-            intro: "From front-end to back-end, I build robust and scalable solutions: responsive interfaces, secure APIs, real-time features with Socket.io, and relational or NoSQL databases.",
-            webMobile: "Mobile & Web Development",
-            backend: "Backend & Systems",
-            categories: {
-                "Frontend & Mobile": "Frontend & Mobile", "Backend": "Backend",
-                "Bases de Données": "Databases", "Outils & DevOps": "Tools & DevOps",
-            },
+            headline2: "fast and secure.",
+            intro: "From front-end to back-end, I build robust and scalable solutions, with clean, maintainable code.",
+            points: [
+                "Responsive, accessible and reactive React interfaces",
+                "REST and real-time APIs with Node.js and Socket.io",
+                "Flutter mobile apps connected to your data",
+            ],
+            editor: { explorer: "Explorer", problems: "problems" },
         },
         services: {
             title: "What I can do for you",
@@ -232,6 +240,6 @@ export const translations = {
             switchLang: "Passer en français",
         },
         scrollTop: "Back to top",
-        cv: { back: "Back to portfolio", download: "Download as PDF", generating: "Generating..." },
+        cv: { back: "Back to portfolio", download: "Download as PDF", downloadHint: "Choose “Save as PDF” in the print dialog" },
     },
 };
