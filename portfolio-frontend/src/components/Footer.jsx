@@ -1,8 +1,10 @@
 import React from 'react';
 import { Github, Linkedin, Facebook, Twitter, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -23,7 +25,7 @@ export default function Footer() {
             Sory<span className="text-cyanAccent">.</span>Keita
           </span>
           <p className="text-slate-500 text-sm mt-1 font-mono">
-            Développeur Full-Stack & Mobile
+            {t('footer.role')}
           </p>
         </div>
 
@@ -49,8 +51,8 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="text-slate-500 text-sm font-mono text-center md:text-right">
-          <p>© {currentYear} Tous droits réservés.</p>
-          <p className="text-xs mt-1 opacity-60">Conçu & Développé avec ❤️ à Labé</p>
+          <p>© {currentYear} {t('footer.rights')}</p>
+          <p className="text-xs mt-1 opacity-60">{t('footer.made')}</p>
         </div>
       </div>
     </footer>

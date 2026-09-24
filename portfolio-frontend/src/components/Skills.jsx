@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { skills } from '../data/skills';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Skills() {
+  const { t } = useLanguage();
   const [typedCode, setTypedCode] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [inView, setInView] = useState(false);
@@ -103,25 +105,25 @@ export default function Skills() {
           {/* LEFT COLUMN: Text and Description */}
           <div className="flex-1 w-full relative z-10">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
-              <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">02.</span> Compétences
+              <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">02.</span> {t('skills.title')}
             </h2>
             <div className="mb-4">
               <h3 className="text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-2">
-                Je conçois des applications
+                {t('skills.headline1')}
               </h3>
               <h3 className="text-4xl md:text-5xl font-extrabold text-cyanAccent uppercase tracking-tight flex items-center">
-                Rapides & Sécurisées<span className="animate-pulse ml-1">.</span><span className="text-cyanAccent font-light animate-ping ml-2">|</span>
+                {t('skills.headline2')}<span className="animate-pulse ml-1">.</span><span className="text-cyanAccent font-light animate-ping ml-2">|</span>
               </h3>
             </div>
 
             <p className="text-slate-400 text-lg leading-relaxed mb-10 max-w-xl">
-              Du front-end au back-end, je construis des solutions robustes et évolutives : interfaces réactives, API sécurisées, temps réel avec Socket.io et bases de données relationnelles ou NoSQL.
+              {t('skills.intro')}
             </p>
 
             <div className="space-y-6">
               <div className="group">
                 <h3 className="text-xl font-bold font-display text-slate-200 mb-2 group-hover:text-cyanAccent transition-colors">
-                  <span className="text-cyanAccent mr-2">/&gt;</span>Développement Mobile & Web
+                  <span className="text-cyanAccent mr-2">/&gt;</span>{t('skills.webMobile')}
                 </h3>
                 <p className="text-slate-500 font-mono pl-6 border-l-2 border-slate-700/50 group-hover:border-cyanAccent/50 transition-colors">
                   React, Flutter, Tailwind CSS, Vite
@@ -130,7 +132,7 @@ export default function Skills() {
 
               <div className="group">
                 <h3 className="text-xl font-bold font-display text-slate-200 mb-2 group-hover:text-greenAccent transition-colors">
-                  <span className="text-greenAccent mr-2">/&gt;</span>Backend & Système
+                  <span className="text-greenAccent mr-2">/&gt;</span>{t('skills.backend')}
                 </h3>
                 <p className="text-slate-500 font-mono pl-6 border-l-2 border-slate-700/50 group-hover:border-greenAccent/50 transition-colors">
                   Node.js, Socket.io, PostgreSQL, MongoDB, MySQL
@@ -181,7 +183,7 @@ export default function Skills() {
               transition={{ delay: idx * 0.1 }}
               className="bg-cardBg/60 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-cyanAccent/50 transition-colors"
             >
-              <h4 className="font-mono text-cyanAccent text-sm mb-4">{category}</h4>
+              <h4 className="font-mono text-cyanAccent text-sm mb-4">{t(`skills.categories.${category}`)}</h4>
               <div className="flex flex-wrap gap-2">
                 {items.map((item) => (
                   <span key={item} className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 bg-slate-800/60 border border-slate-700/50">

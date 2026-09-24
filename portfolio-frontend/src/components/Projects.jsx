@@ -3,17 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Maximize2 } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectModal from './ProjectModal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Filtres : technologies utilisées par au moins deux projets
 const techCounts = projects.flatMap((p) => p.tech).reduce((acc, t) => ({ ...acc, [t]: (acc[t] || 0) + 1 }), {});
-const filters = ['Tous', ...Object.keys(techCounts).filter((t) => techCounts[t] > 1)];
+const ALL = 'all';
+const filters = [ALL, ...Object.keys(techCounts).filter((tech) => techCounts[tech] > 1)];
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('Tous');
+  const { t, tr } = useLanguage();
+  const [activeFilter, setActiveFilter] = useState(ALL);
   const [selectedProject, setSelectedProject] = useState(null);
   const closeModal = useCallback(() => setSelectedProject(null), []);
 
-  const visibleProjects = activeFilter === 'Tous'
+  const visibleProjects = activeFilter === ALL
     ? projects
     : projects.filter((p) => p.tech.includes(activeFilter));
 
@@ -26,10 +29,10 @@ export default function Projects() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
-            <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">04.</span> Projets récents
+            <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">04.</span> {t('projects.title')}
           </h2>
 
-          <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filtrer les projets par technologie">
+          <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label={t('projects.filterLabel')}>
             {filters.map((filter) => (
               <button
                 key={filter}
@@ -40,7 +43,7 @@ export default function Projects() {
                   ? 'bg-cyanAccent text-darkBg border-cyanAccent'
                   : 'border-slate-700 text-slate-400 hover:border-cyanAccent/50 hover:text-cyanAccent'}`}
               >
-                {filter}
+                {filter === ALL ? t('projects.all') : filter}
               </button>
             ))}
           </div>
@@ -94,25 +97,25 @@ export default function Projects() {
                     {project.title}
                   </h3>
                   <p className="text-slate-400 text-sm mb-6 line-clamp-4">
-                    {project.description}
+                    {tr(project.description)}
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map(t => (
-                      <span key={t} className="px-2 py-0.5 rounded text-xs font-mono text-greenAccent bg-greenAccent/10">
-                        {t}
+                    {project.tech.map(tech => (
+                      <span key={tech} className="px-2 py-0.5 rounded text-xs font-mono text-greenAccent bg-greenAccent/10">
+                        {tech}
                       </span>
                     ))}
                   </div>
 
                   <div className="flex gap-4 mt-auto items-center" onClick={(e) => e.stopPropagation()}>
                     {project.github && project.github !== '#' && (
-                      <a href={project.github} target="_blank" rel="noreferrer" aria-label={`Code source de ${project.title}`} className="text-slate-400 hover:text-cyanAccent transition-colors" title="Code Source">
+                      <a href={project.github} target="_blank" rel="noreferrer" aria-label={`${t('projects.source')} ${project.title}`} className="text-slate-400 hover:text-cyanAccent transition-colors" title={t('modal.sourceCode')}>
                         <Github size={20} />
                       </a>
                     )}
                     {project.demo && (
-                      <a href={project.demo} target="_blank" rel="noreferrer" aria-label={`Démo de ${project.title}`} className="text-slate-400 hover:text-cyanAccent transition-colors" title="Voir l'application">
+                      <a href={project.demo} target="_blank" rel="noreferrer" aria-label={`${t('projects.demo')} ${project.title}`} className="text-slate-400 hover:text-cyanAccent transition-colors" title={t('modal.live')}>
                         <ExternalLink size={20} />
                       </a>
                     )}
@@ -121,7 +124,7 @@ export default function Projects() {
                       onClick={() => setSelectedProject(project)}
                       className="ml-auto inline-flex items-center gap-1.5 text-sm font-mono text-slate-400 hover:text-cyanAccent transition-colors"
                     >
-                      Détails <Maximize2 size={14} />
+                      {t('projects.details')} <Maximize2 size={14} />
                     </button>
                   </div>
                 </div>

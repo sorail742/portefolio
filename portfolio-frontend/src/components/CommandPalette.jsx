@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Search, Home, User, Code2, Briefcase, FolderGit2, Mail, FileText, Copy, Github, Linkedin, CornerDownLeft } from 'lucide-react';
+import { Search, Home, User, Code2, Briefcase, Languages, FolderGit2, Mail, FileText, Copy, Github, Linkedin, CornerDownLeft } from 'lucide-react';
 import { profile } from '../data/profile';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const OPEN_PALETTE_EVENT = 'open-command-palette';
 
@@ -14,6 +15,7 @@ export default function CommandPalette() {
   const [toast, setToast] = useState('');
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const { t, lang, setLang } = useLanguage();
 
   const goTo = (id) => {
     navigate('/');
@@ -26,21 +28,22 @@ export default function CommandPalette() {
   };
 
   const commands = useMemo(() => [
-    { group: 'Navigation', label: 'Accueil', icon: Home, action: () => goTo('home') },
-    { group: 'Navigation', label: 'À propos', icon: User, action: () => goTo('about') },
-    { group: 'Navigation', label: 'Compétences', icon: Code2, action: () => goTo('skills') },
-    { group: 'Navigation', label: 'Services', icon: Briefcase, action: () => goTo('services') },
-    { group: 'Navigation', label: 'Projets', icon: FolderGit2, action: () => goTo('projects') },
-    { group: 'Navigation', label: 'Contact', icon: Mail, action: () => goTo('contact') },
-    { group: 'Actions', label: 'Voir / télécharger mon CV', icon: FileText, action: () => navigate('/cv') },
+    { group: t('palette.groups.nav'), label: t('nav.home'), icon: Home, action: () => goTo('home') },
+    { group: t('palette.groups.nav'), label: t('nav.about'), icon: User, action: () => goTo('about') },
+    { group: t('palette.groups.nav'), label: t('nav.skills'), icon: Code2, action: () => goTo('skills') },
+    { group: t('palette.groups.nav'), label: t('nav.services'), icon: Briefcase, action: () => goTo('services') },
+    { group: t('palette.groups.nav'), label: t('nav.projects'), icon: FolderGit2, action: () => goTo('projects') },
+    { group: t('palette.groups.nav'), label: t('nav.contact'), icon: Mail, action: () => goTo('contact') },
+    { group: t('palette.groups.actions'), label: t('palette.cv'), icon: FileText, action: () => navigate('/cv') },
     {
-      group: 'Actions', label: "Copier l'adresse email", icon: Copy,
-      action: () => navigator.clipboard?.writeText(profile.email).then(() => showToast('Email copié !')),
+      group: t('palette.groups.actions'), label: t('palette.copyEmail'), icon: Copy,
+      action: () => navigator.clipboard?.writeText(profile.email).then(() => showToast(t('palette.copied'))),
     },
-    { group: 'Actions', label: 'Envoyer un email', icon: Mail, action: () => { window.location.href = `mailto:${profile.email}`; } },
-    { group: 'Réseaux', label: 'GitHub', icon: Github, action: () => window.open(profile.socials.github, '_blank', 'noopener') },
-    { group: 'Réseaux', label: 'LinkedIn', icon: Linkedin, action: () => window.open(profile.socials.linkedin, '_blank', 'noopener') },
-  ], [navigate]);
+    { group: t('palette.groups.actions'), label: t('palette.sendEmail'), icon: Mail, action: () => { window.location.href = `mailto:${profile.email}`; } },
+    { group: t('palette.groups.actions'), label: t('palette.switchLang'), icon: Languages, action: () => setLang(lang === 'fr' ? 'en' : 'fr') },
+    { group: t('palette.groups.social'), label: 'GitHub', icon: Github, action: () => window.open(profile.socials.github, '_blank', 'noopener') },
+    { group: t('palette.groups.social'), label: 'LinkedIn', icon: Linkedin, action: () => window.open(profile.socials.linkedin, '_blank', 'noopener') },
+  ], [navigate, t, lang, setLang]);
 
   const filtered = commands.filter((c) => c.label.toLowerCase().includes(query.toLowerCase()));
 
@@ -109,7 +112,7 @@ export default function CommandPalette() {
               transition={{ duration: 0.15 }}
               role="dialog"
               aria-modal="true"
-              aria-label="Palette de commandes"
+              aria-label={t('palette.label')}
               className="w-full max-w-lg bg-cardBg border border-slate-700 rounded-xl shadow-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
@@ -120,14 +123,14 @@ export default function CommandPalette() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleInputKey}
-                  placeholder="Rechercher une action ou une section..."
+                  placeholder={t('palette.search')}
                   className="flex-1 bg-transparent px-3 py-4 text-slate-200 placeholder-slate-500 focus:outline-none font-mono text-sm"
                 />
                 <kbd className="text-[10px] font-mono text-slate-500 border border-slate-700 rounded px-1.5 py-0.5">ESC</kbd>
               </div>
               <ul className="max-h-80 overflow-y-auto py-2">
                 {filtered.length === 0 && (
-                  <li className="px-4 py-6 text-center text-slate-500 text-sm font-mono">Aucun résultat</li>
+                  <li className="px-4 py-6 text-center text-slate-500 text-sm font-mono">{t('palette.empty')}</li>
                 )}
                 {filtered.map((command, idx) => {
                   const showGroup = command.group !== lastGroup;

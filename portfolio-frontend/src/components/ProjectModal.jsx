@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, Github, ExternalLink, Smartphone, Monitor } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Fiche détaillée d'un projet (captures desktop + mobile, technos, liens)
 export default function ProjectModal({ project, onClose }) {
+  const { t, tr } = useLanguage();
   useEffect(() => {
     const handleKey = (e) => e.key === 'Escape' && onClose();
     window.addEventListener('keydown', handleKey);
@@ -35,7 +37,7 @@ export default function ProjectModal({ project, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          aria-label="Fermer"
+          aria-label={t('modal.close')}
           className="absolute top-4 right-4 z-10 p-2 rounded-full bg-darkBg/80 text-slate-300 hover:text-cyanAccent transition-colors"
         >
           <X size={20} />
@@ -45,12 +47,12 @@ export default function ProjectModal({ project, onClose }) {
           <div className="relative bg-slate-900 p-6 md:p-10 flex items-end justify-center gap-6">
             <div className="flex-1 max-w-2xl">
               <div className="flex items-center gap-1.5 text-slate-500 text-xs font-mono mb-2"><Monitor size={14} /> Desktop</div>
-              <img src={project.image} alt={`${project.title} version desktop`} className="w-full rounded-lg border border-slate-700 shadow-2xl" />
+              <img src={project.image} alt={`${project.title} — ${t('modal.desktop')}`} className="w-full rounded-lg border border-slate-700 shadow-2xl" />
             </div>
             {project.mobileImage && (
               <div className="hidden sm:block w-40 shrink-0">
                 <div className="flex items-center gap-1.5 text-slate-500 text-xs font-mono mb-2"><Smartphone size={14} /> Mobile</div>
-                <img src={project.mobileImage} alt={`${project.title} version mobile`} className="w-full rounded-2xl border-2 border-slate-700 shadow-2xl" />
+                <img src={project.mobileImage} alt={`${project.title} — ${t('modal.mobile')}`} className="w-full rounded-2xl border-2 border-slate-700 shadow-2xl" />
               </div>
             )}
           </div>
@@ -62,28 +64,28 @@ export default function ProjectModal({ project, onClose }) {
 
         <div className="p-6 md:p-10">
           <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-100 mb-4">{project.title}</h3>
-          <p className="text-slate-300 leading-relaxed mb-6">{project.description}</p>
+          <p className="text-slate-300 leading-relaxed mb-6">{tr(project.description)}</p>
 
-          <h4 className="text-sm font-mono text-slate-500 uppercase tracking-wider mb-3">Stack technique</h4>
+          <h4 className="text-sm font-mono text-slate-500 uppercase tracking-wider mb-3">{t('modal.stack')}</h4>
           <div className="flex flex-wrap gap-2 mb-8">
-            {project.tech.map((t) => (
-              <span key={t} className="px-3 py-1 rounded-full text-xs font-mono text-greenAccent bg-greenAccent/10 border border-greenAccent/20">{t}</span>
+            {project.tech.map((tech) => (
+              <span key={tech} className="px-3 py-1 rounded-full text-xs font-mono text-greenAccent bg-greenAccent/10 border border-greenAccent/20">{tech}</span>
             ))}
           </div>
 
           <div className="flex flex-wrap gap-4">
             {project.github && project.github !== '#' && (
               <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 border border-slate-600 rounded text-slate-300 hover:border-cyanAccent hover:text-cyanAccent transition-colors font-mono text-sm">
-                <Github size={16} /> Code source
+                <Github size={16} /> {t('modal.sourceCode')}
               </a>
             )}
             {project.demo && (
               <a href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyanAccent text-darkBg rounded font-bold hover:bg-cyanAccent/90 transition-colors text-sm">
-                <ExternalLink size={16} /> Voir en ligne
+                <ExternalLink size={16} /> {t('modal.live')}
               </a>
             )}
             {(!project.github || project.github === '#') && !project.demo && (
-              <p className="text-slate-500 text-sm font-mono">Projet en cours de développement — démo disponible sur demande.</p>
+              <p className="text-slate-500 text-sm font-mono">{t('modal.inProgress')}</p>
             )}
           </div>
         </div>
