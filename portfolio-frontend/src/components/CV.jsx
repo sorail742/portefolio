@@ -132,7 +132,7 @@ const CV = forwardRef((props, ref) => {
           <div style={{ paddingLeft: '48px', position: 'relative', paddingBottom: '10px' }}>
             <div style={{ position: 'absolute', width: '8px', height: '8px', backgroundColor: 'white', borderRadius: '50%', border: `2px solid ${brandColor}`, left: '12px', top: '6px' }}></div>
             <p style={{ fontSize: '12px', color: '#475569', lineHeight: '1.6', textAlign: 'justify', margin: 0 }}>
-              Développeur Full-Stack passionné et autodidacte avec une solide expérience pratique sur des projets web (React, Node.js, PostgreSQL, MongoDB). Actuellement en <strong>3ème année de Licence Informatique</strong> à l'Université de Labé, je développe activement plusieurs applications (santé, agriculture, entreprise). Je recherche un stage pour mettre mes compétences au service d'une équipe ambitieuse et continuer à progresser.
+              Développeur Full-Stack passionné et autodidacte avec une solide expérience pratique sur des projets web (React, Node.js, PostgreSQL, MongoDB). Actuellement en <strong>3ème année de Licence Informatique</strong> à l'Université de Labé, je développe activement plusieurs applications (santé, agriculture, entreprise). Disponible pour un emploi (CDI/CDD), des missions freelance ou un stage, je souhaite mettre mes compétences au service de projets ambitieux.
             </p>
           </div>
         </div>

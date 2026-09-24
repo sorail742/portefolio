@@ -8,6 +8,7 @@ import { skills } from '../data/skills';
 import { education } from '../data/education';
 import { OPEN_PALETTE_EVENT } from './CommandPalette';
 import MagneticButton from './MagneticButton';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Apparition en cascade des éléments du Hero après l'écran de démarrage
 const container = {
@@ -30,9 +31,9 @@ const NAME = 'Sory Keita.';
 
 // Chiffres clés calculés à partir des données réelles du portfolio
 const stats = [
-  { value: projects.length, label: 'Projets réalisés' },
-  { value: new Set(Object.values(skills).flat()).size, label: 'Technologies' },
-  { value: education.filter((e) => e.status === 'done').length, label: 'Formations validées' },
+  { value: projects.length, key: 'projects' },
+  { value: new Set(Object.values(skills).flat()).size, key: 'tech' },
+  { value: education.filter((e) => e.status === 'done').length, key: 'training' },
 ];
 
 const Typewriter = ({ texts }) => {
@@ -67,6 +68,7 @@ const Typewriter = ({ texts }) => {
 };
 
 export default function Hero({ ready = true }) {
+  const { t, tr, lang } = useLanguage();
   return (
     <section id="home" className="min-h-screen flex items-center pt-20 px-4 relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -95,13 +97,13 @@ export default function Hero({ ready = true }) {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-greenAccent opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-greenAccent"></span>
             </span>
-            Disponible pour un stage
+            {t('hero.badge')}
           </motion.div>
-          <motion.p variants={item} className="text-greenAccent font-mono mb-4 text-lg">Hello World, je suis</motion.p>
+          <motion.p variants={item} className="text-greenAccent font-mono mb-4 text-lg">{t('hero.hello')}</motion.p>
           <motion.h1
             variants={nameContainer}
             aria-label={NAME}
-            className="text-5xl md:text-7xl font-bold font-mono mb-6 [perspective:600px]"
+            className="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-6 [perspective:600px]"
           >
             {NAME.split('').map((char, i) => (
               <motion.span
@@ -115,27 +117,27 @@ export default function Hero({ ready = true }) {
               </motion.span>
             ))}
           </motion.h1>
-          <motion.h2 variants={item} className="text-4xl md:text-6xl font-bold font-mono text-slate-400 mb-8 min-h-[96px] md:min-h-[auto] md:whitespace-nowrap">
-            <Typewriter texts={['Étudiant L3 Informatique', 'Développeur Full-Stack', 'React · Node.js · Mobile']} />
+          <motion.h2 variants={item} className="text-3xl md:text-5xl font-semibold font-mono text-slate-400 mb-8 min-h-[80px] md:min-h-[auto] md:whitespace-nowrap">
+            <Typewriter key={lang} texts={t('hero.roles')} />
           </motion.h2>
           <motion.p variants={item} className="text-xl text-slate-400 mb-4 max-w-2xl font-sans">
-            Je construis des applications web et mobile performantes, du front-end au back-end.
+            {t('hero.tagline')}
           </motion.p>
           <motion.p variants={item} className="flex items-center text-sm text-slate-500 font-mono mb-10">
-            <MapPin size={14} className="mr-1.5" /> {profile.location} · Ouvert au télétravail
+            <MapPin size={14} className="mr-1.5" /> {tr(profile.location)} · {t('hero.remote')}
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap gap-4">
             <MagneticButton>
               <a href="#projects" className="group relative inline-block overflow-hidden px-6 sm:px-8 py-4 whitespace-nowrap bg-cyanAccent text-darkBg font-bold rounded shadow-[0_0_25px_rgba(0,212,255,0.35)] hover:shadow-[0_0_40px_rgba(0,212,255,0.6)] transition-shadow">
-                <span className="relative z-10">Voir mes projets</span>
+                <span className="relative z-10">{t('hero.ctaProjects')}</span>
                 {/* Reflet qui balaie le bouton au survol */}
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
               </a>
             </MagneticButton>
             <MagneticButton>
               <Link to="/cv" className="inline-block px-6 sm:px-8 py-4 whitespace-nowrap border border-slate-600 text-slate-300 font-bold rounded hover:border-cyanAccent hover:text-cyanAccent hover:bg-cyanAccent/5 transition-colors">
-                Voir mon CV
+                {t('hero.ctaCv')}
               </Link>
             </MagneticButton>
           </motion.div>
@@ -155,15 +157,15 @@ export default function Hero({ ready = true }) {
               onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}
               className="hidden md:inline-flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded border border-slate-700 text-slate-500 hover:text-cyanAccent hover:border-cyanAccent/50 font-mono text-xs transition-colors"
             >
-              Appuyez sur <Command size={12} /> K
+              {t('hero.pressKey')} <Command size={12} /> K
             </button>
           </motion.div>
 
           <motion.div variants={item} className="grid grid-cols-3 gap-4 mt-14 max-w-lg">
             {stats.map((stat) => (
-              <div key={stat.label} className="border-l-2 border-cyanAccent/40 pl-4">
-                <div className="text-3xl md:text-4xl font-bold font-mono text-slate-100">{stat.value}</div>
-                <div className="text-xs md:text-sm text-slate-500 mt-1">{stat.label}</div>
+              <div key={stat.key} className="border-l-2 border-cyanAccent/40 pl-4">
+                <div className="text-3xl md:text-4xl font-bold font-display text-slate-100">{stat.value}</div>
+                <div className="text-xs md:text-sm text-slate-500 mt-1">{t(`hero.stats.${stat.key}`)}</div>
               </div>
             ))}
           </motion.div>

@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
+import LanguageToggle from './LanguageToggle';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +29,7 @@ export default function Navbar() {
       },
       { rootMargin: '-45% 0px -50% 0px' }
     );
-    ['home', 'about', 'skills', 'projects', 'contact'].forEach((id) => {
+    ['home', 'about', 'skills', 'services', 'projects', 'contact'].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -37,11 +40,12 @@ export default function Navbar() {
     path === `/#${activeSection}` ? 'text-cyanAccent' : 'text-gray-300 hover:text-cyanAccent';
 
   const navLinks = [
-    { name: 'Accueil', path: '/#home' },
-    { name: 'À propos', path: '/#about' },
-    { name: 'Compétences', path: '/#skills' },
-    { name: 'Projets', path: '/#projects' },
-    { name: 'Contact', path: '/#contact' },
+    { name: t('nav.home'), path: '/#home' },
+    { name: t('nav.about'), path: '/#about' },
+    { name: t('nav.skills'), path: '/#skills' },
+    { name: t('nav.services'), path: '/#services' },
+    { name: t('nav.projects'), path: '/#projects' },
+    { name: t('nav.contact'), path: '/#contact' },
   ];
 
   return (
@@ -56,25 +60,29 @@ export default function Navbar() {
               className="text-cyanAccent ml-1"
             >_</motion.span>
           </Link>
-          <div className="hidden md:flex space-x-8 items-center">
+          <div className="hidden lg:flex space-x-7 items-center">
             {navLinks.map((link) => (
               <a key={link.name} href={link.path} className={`${linkClass(link.path)} font-mono text-sm transition-colors`}>
                 {link.name}
               </a>
             ))}
             <Link to="/cv" className="px-5 py-2 border border-cyanAccent text-cyanAccent rounded-md hover:bg-cyanAccent/10 transition-colors font-mono text-sm">
-              Voir CV
+              {t('nav.cv')}
             </Link>
+            <LanguageToggle />
           </div>
-          <button
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            className="md:hidden text-slate-300 hover:text-cyanAccent transition-colors p-2"
-            aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <LanguageToggle />
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              className="lg:hidden text-slate-300 hover:text-cyanAccent transition-colors p-2"
+              aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -85,7 +93,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden border-t border-slate-800"
+            className="lg:hidden overflow-hidden border-t border-slate-800"
           >
             <div className="px-4 py-6 flex flex-col space-y-4">
               {navLinks.map((link) => (
@@ -103,7 +111,7 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className="px-5 py-2 border border-cyanAccent text-cyanAccent rounded-md hover:bg-cyanAccent/10 transition-colors font-mono text-center"
               >
-                Voir CV
+                {t('nav.cv')}
               </Link>
             </div>
           </motion.div>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { useLanguage } from '../i18n/LanguageContext';
 import { Download, Loader } from 'lucide-react';
 
 export default function CVExportButton({ targetRef }) {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
@@ -80,12 +82,12 @@ export default function CVExportButton({ targetRef }) {
       {loading ? (
         <>
           <Loader size={20} className="animate-spin" />
-          Génération...
+          {t('cv.generating')}
         </>
       ) : (
         <>
           <Download size={20} />
-          Télécharger en PDF
+          {t('cv.download')}
         </>
       )}
     </button>

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n/LanguageContext';
 
-const bootLines = [
-  '> initialisation du portfolio...',
-  '> chargement des projets........ OK',
-  '> compilation des compétences... OK',
-  '> connexion établie. Bienvenue !',
-];
 
 // Écran de démarrage façon terminal, affiché une fois par session.
 // Un clic ou une touche permet de le passer.
 export default function IntroLoader({ onFinish }) {
+  const { t } = useLanguage();
+  const bootLines = t('intro.lines');
   const [visibleLines, setVisibleLines] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -66,7 +63,7 @@ export default function IntroLoader({ onFinish }) {
           />
         </div>
         <div className="mt-2 flex justify-between text-[11px] text-slate-600">
-          <span>Cliquez pour passer</span>
+          <span>{t('intro.skip')}</span>
           <span>{progress}%</span>
         </div>
       </div>

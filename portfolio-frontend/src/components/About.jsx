@@ -1,8 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { education } from '../data/education';
+import { profile } from '../data/profile';
+import { useLanguage } from '../i18n/LanguageContext';
+
+const Tech = ({ children }) => <span className="text-slate-200 font-medium">{children}</span>;
+const Accent = ({ children }) => <span className="text-cyanAccent font-medium">{children}</span>;
 
 export default function About() {
+  const { t, tr } = useLanguage();
   return (
     <section id="about" className="py-24 px-4 relative">
       <div className="max-w-7xl mx-auto">
@@ -13,33 +19,35 @@ export default function About() {
           className="flex flex-col md:flex-row gap-12 items-start"
         >
           <div className="flex-1">
-            <h2 className="text-3xl font-mono font-bold mb-8 flex items-center">
-              <span className="text-cyanAccent mr-2">01.</span> À propos de moi
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
+              <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">01.</span> {t('about.title')}
             </h2>
-            <div className="text-slate-400 font-sans space-y-4 text-lg leading-relaxed">
-              <p className="text-slate-300 text-lg leading-relaxed text-justify relative z-10 mb-6 font-sans">
-                Passionné par le développement depuis mes débuts en programmation, je suis actuellement en 3ème année de Licence Informatique à l'Université de Labé. Mon objectif est de créer des outils performants, accessibles et esthétiques.
+            <div className="text-slate-400 space-y-5 text-lg leading-relaxed max-w-2xl">
+              <p className="text-slate-200 text-xl leading-relaxed">{t('about.p1')}</p>
+              <p>
+                {t('about.p2a')}<Tech>React</Tech>, <Tech>Node.js</Tech> {t('about.and')} <Tech>Flutter</Tech>{t('about.p2b')}<Tech>n8n</Tech>{t('about.p2c')}
               </p>
               <p>
-                En tant que développeur orienté Full-Stack et Mobile, j'affectionne particulièrement l'écosystème React et Node.js. Je m'efforce toujours d'apprendre les meilleures pratiques et de relever de nouveaux défis.
+                {t('about.p3a')}<Accent>{t('about.p3job')}</Accent>{t('about.p3b')}<Accent>{t('about.p3freelance')}</Accent>{t('about.p3c')}<Accent>{t('about.p3internship')}</Accent>{t('about.p3d')}
               </p>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <span className="px-4 py-2 rounded-full border border-cyanAccent/30 text-cyanAccent bg-cyanAccent/10 text-sm font-mono">Passionné d'Open Source</span>
-              <span className="px-4 py-2 rounded-full border border-cyanAccent/30 text-cyanAccent bg-cyanAccent/10 text-sm font-mono">Disponible pour stage</span>
-              <span className="px-4 py-2 rounded-full border border-slate-600 text-slate-300 bg-cardBg text-sm font-mono">Open to remote</span>
+              {profile.availability.map((label) => (
+                <span key={label.fr} className="px-4 py-2 rounded-full border border-greenAccent/30 text-greenAccent bg-greenAccent/10 text-sm font-medium">{tr(label)}</span>
+              ))}
+              <span className="px-4 py-2 rounded-full border border-slate-600 text-slate-300 bg-cardBg text-sm font-medium">{t('about.remote')}</span>
             </div>
 
             <div className="mt-10">
-              <h3 className="font-mono text-xl text-slate-200 mb-6">Formation & Certifications</h3>
+              <h3 className="font-display font-semibold text-xl text-slate-200 mb-6">{t('about.education')}</h3>
               <div className="border-l-2 border-slate-700/50 pl-6 space-y-6 relative">
                 {education.map((item) => (
-                  <div key={item.title} className="relative">
+                  <div key={item.title.fr} className="relative">
                     <div className={`absolute -left-[31px] top-1.5 w-3 h-3 rounded-full border-4 border-darkBg ${item.status === 'current' ? 'bg-cyanAccent' : item.status === 'done' ? 'bg-greenAccent' : 'bg-slate-500'}`}></div>
-                    <h4 className="text-slate-100 font-bold text-[15px]">{item.title}</h4>
+                    <h4 className="text-slate-100 font-bold text-[15px]">{tr(item.title)}</h4>
                     <p className={`font-mono mt-1 ${item.status === 'current' ? 'text-cyanAccent text-sm' : item.status === 'done' ? 'text-greenAccent text-[13px]' : 'text-slate-400 text-[13px]'}`}>
-                      {item.place} • {item.date}
+                      {tr(item.place)} • {tr(item.date)}
                     </p>
                   </div>
                 ))}

@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import CV from '../components/CV';
 import CVExportButton from '../components/CVExportButton';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function CVPage() {
+  const { t } = useLanguage();
   // ref for exporting CV
   const targetRef = useRef();
 
@@ -17,7 +19,7 @@ export default function CVPage() {
     <div className="min-h-screen bg-darkBg text-slate-100 py-12 px-4">
       <div className="max-w-[210mm] mx-auto mb-8">
         <Link to="/" className="inline-flex items-center text-cyanAccent hover:text-cyanAccent/80 font-mono transition-colors">
-          <ArrowLeft className="mr-2" size={20} /> Retour au portfolio
+          <ArrowLeft className="mr-2" size={20} /> {t('cv.back')}
         </Link>
       </div>
 
