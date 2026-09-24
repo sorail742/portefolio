@@ -26,6 +26,7 @@ export const translations = {
             ctaCv: "Voir mon CV",
             pressKey: "Appuyez sur",
             stats: { projects: "Projets réalisés", tech: "Technologies", training: "Formations validées" },
+            visual: { available: "Disponible", availableSub: "Emploi · Freelance · Stage" },
         },
         about: {
             title: "À propos de moi",
@@ -142,6 +143,7 @@ export const translations = {
             ctaCv: "View my CV",
             pressKey: "Press",
             stats: { projects: "Projects built", tech: "Technologies", training: "Certifications earned" },
+            visual: { available: "Available now", availableSub: "Full-time · Freelance · Internship" },
         },
         about: {
             title: "About me",
