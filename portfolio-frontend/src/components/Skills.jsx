@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { skills } from '../data/skills';
 
 export default function Skills() {
   const [typedCode, setTypedCode] = useState('');
@@ -9,7 +10,7 @@ export default function Skills() {
   const snippets = [
     {
       filename: "skills.json",
-      code: `{\n  "Front-end": ["React", "Tailwind CSS"],\n  "Mobile": "React Native",\n  "Back-end": "Node.js",\n  "Databases": ["PostgreSQL", "MariaDB"],\n  "OS / Dev": "Linux / Ubuntu"\n}`
+      code: `{\n  "Front-end": ["React", "Tailwind CSS"],\n  "Mobile": "Flutter",\n  "Back-end": "Node.js",\n  "Databases": ["PostgreSQL", "MongoDB"],\n  "Automatisation": "n8n"\n}`
     },
     {
       filename: "main.c",
@@ -20,8 +21,8 @@ export default function Skills() {
       code: `import React from 'react';\n\nconst App = () => {\n  console.log("Full-stack JavaScript Developer");\n  return <Portfolio />;\n};`
     },
     {
-      filename: "server.py",
-      code: `import django\nfrom rest_framework import views\n\ndef get_skills():\n    return ["Django", "API", "Analysis"]\n\nif __name__ == "__main__":\n    print(get_skills())`
+      filename: "server.js",
+      code: `import express from 'express';\n\nconst app = express();\n\napp.get('/api/skills', (req, res) => {\n  res.json(["Node.js", "API REST", "Socket.io"]);\n});\n\napp.listen(3000);`
     },
     {
       filename: "mobile.dart",
@@ -101,13 +102,16 @@ export default function Skills() {
         >
           {/* LEFT COLUMN: Text and Description */}
           <div className="flex-1 w-full relative z-10">
+            <h2 className="text-3xl font-mono font-bold mb-8 flex items-center">
+              <span className="text-cyanAccent mr-2">02.</span> Compétences
+            </h2>
             <div className="mb-4">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-2">
+              <h3 className="text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-2">
                 Je Bâtis des applications
-              </h2>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-cyanAccent uppercase tracking-tight flex items-center">
+              </h3>
+              <h3 className="text-4xl md:text-5xl font-extrabold text-cyanAccent uppercase tracking-tight flex items-center">
                 Performantes & Sécurisées<span className="animate-pulse ml-1">.</span><span className="text-cyanAccent font-light animate-ping ml-2">|</span>
-              </h2>
+              </h3>
             </div>
 
             <p className="text-slate-400 text-lg leading-relaxed mb-10 max-w-xl text-justify">
@@ -120,7 +124,7 @@ export default function Skills() {
                   <span className="text-cyanAccent mr-2">/&gt;</span>Développement Mobile & Web
                 </h3>
                 <p className="text-slate-500 font-mono pl-6 border-l-2 border-slate-700/50 group-hover:border-cyanAccent/50 transition-colors">
-                  React, React Native, Tailwind CSS
+                  React, Flutter, Tailwind CSS, Vite
                 </p>
               </div>
 
@@ -129,7 +133,7 @@ export default function Skills() {
                   <span className="text-greenAccent mr-2">/&gt;</span>Backend & Système
                 </h3>
                 <p className="text-slate-500 font-mono pl-6 border-l-2 border-slate-700/50 group-hover:border-greenAccent/50 transition-colors">
-                  Node.js, PostgreSQL, MariaDB, Linux/Ubuntu
+                  Node.js, Socket.io, PostgreSQL, MongoDB, MySQL
                 </p>
               </div>
             </div>
@@ -165,6 +169,29 @@ export default function Skills() {
             </div>
           </div>
         </motion.div>
+
+        {/* Grille des compétences (source : data/skills.js) */}
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {Object.entries(skills).map(([category, items], idx) => (
+            <motion.div
+              key={category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-cardBg/60 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-cyanAccent/50 transition-colors"
+            >
+              <h4 className="font-mono text-cyanAccent text-sm mb-4">{category}</h4>
+              <div className="flex flex-wrap gap-2">
+                {items.map((item) => (
+                  <span key={item} className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 bg-slate-800/60 border border-slate-700/50">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
       </div>
     </section>

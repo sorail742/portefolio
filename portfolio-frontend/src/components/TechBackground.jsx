@@ -1,129 +1,145 @@
 import React, { useEffect, useRef } from 'react';
 
+// Fond animé : constellation de particules reliées qui réagit à la souris,
+// posée sur des halos de couleur qui dérivent lentement.
 const TechBackground = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const mouse = { x: -9999, y: -9999 };
+    const LINK_DISTANCE = 140;
+    const MOUSE_RADIUS = 180;
+    let particles = [];
+    let width = 0;
+    let height = 0;
     let animationFrameId;
-    let time = 0;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    const createParticles = () => {
+      // Densité adaptée à la taille de l'écran (moins de particules sur mobile)
+      const count = Math.min(110, Math.floor((width * height) / 14000));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.6 + 0.6,
+        green: Math.random() < 0.2,
+      }));
     };
 
-    const drawHUD = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      time += 0.005;
+    const resizeCanvas = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      createParticles();
+    };
 
-      const centerX = canvas.width * 0.15; // Set circles to the left
-      const centerY = canvas.height / 2;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
 
-      // Base styles
-      ctx.strokeStyle = 'rgba(0, 212, 255, 0.6)';
-      ctx.lineWidth = 1;
-
-      // 1. Draw spinning concentric circles (HUD)
-      const drawCircle = (radius, dashArray, speed, color, width = 1) => {
-        ctx.save();
-        ctx.translate(centerX, centerY);
-        ctx.rotate(time * speed);
-        ctx.beginPath();
-        ctx.arc(0, 0, radius, 0, Math.PI * 2);
-        if (dashArray) ctx.setLineDash(dashArray);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = width;
-        ctx.stroke();
-        ctx.restore();
-      };
-
-      // Inner circles
-      drawCircle(80, [5, 15], 2, 'rgba(0, 212, 255, 0.9)', 2);
-      drawCircle(120, [40, 20, 10, 20], -1, 'rgba(34, 197, 94, 0.8)', 1.5);
-      drawCircle(180, null, 0.5, 'rgba(0, 212, 255, 0.3)', 1);
-      drawCircle(220, [2, 6], 1.5, 'rgba(0, 212, 255, 0.7)', 3);
-      drawCircle(300, [100, 50, 20, 50], -0.8, 'rgba(34, 197, 94, 0.5)', 1);
-      drawCircle(450, [1, 10], 0.3, 'rgba(0, 212, 255, 0.2)', 10);
-
-      // 2. Draw Circuit lines extending to the right
-      ctx.setLineDash([]);
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = 'rgba(0, 212, 255, 0.4)';
-
-      const drawCircuitLine = (startY, lengths, staticDot = false) => {
-        ctx.beginPath();
-        let currentX = centerX + 180;
-        let currentY = centerY + startY;
-
-        ctx.moveTo(currentX, currentY);
-
-        lengths.forEach((seg, i) => {
-          if (i % 2 === 0) {
-            currentX += seg;
-          } else {
-            currentY += seg;
-          }
-          ctx.lineTo(currentX, currentY);
-        });
-
-        ctx.stroke();
-
-        // Draw node dot at the end
-        if (staticDot) {
-          ctx.beginPath();
-          ctx.arc(currentX, currentY, 3, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(34, 197, 94, 0.8)'; // green dots
-          ctx.fill();
+      for (const p of particles) {
+        // Légère répulsion autour de la souris
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < MOUSE_RADIUS && dist > 0) {
+          const force = (1 - dist / MOUSE_RADIUS) * 0.6;
+          p.x += (dx / dist) * force;
+          p.y += (dy / dist) * force;
         }
 
-        // Draw animated data packet
-        const totalLength = lengths.reduce((a, b) => Math.abs(a) + Math.abs(b), 0);
-        const progress = (time * 100) % totalLength;
-        // Simple representation of data moving along the line for visual flavor
-      };
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
 
-      // Draw several intersecting circuit lines
-      drawCircuitLine(-100, [150, -50, 200, 0, 100], true);
-      drawCircuitLine(50, [200, 80, 150, -20, 300], true);
-      drawCircuitLine(-200, [100, 100, 400], true);
-      drawCircuitLine(150, [300, -100, 250], true);
-      drawCircuitLine(250, [100, 50, 150, -100, 200], true);
-      drawCircuitLine(0, [500, 0, 200], true);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.green ? 'rgba(34, 197, 94, 0.8)' : 'rgba(0, 212, 255, 0.8)';
+        ctx.fill();
+      }
 
-      // Hexagon grids subtly in the background
-      ctx.globalAlpha = 0.05;
-      for (let i = 0; i < canvas.width; i += 100) {
-        for (let j = 0; j < canvas.height; j += 100) {
-          // just subtle grid
-          ctx.strokeRect(i, j, 100, 100);
+      // Liens entre particules proches
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i];
+          const b = particles[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < LINK_DISTANCE) {
+            ctx.strokeStyle = `rgba(0, 212, 255, ${0.18 * (1 - dist / LINK_DISTANCE)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+        // Liens vers la souris
+        const p = particles[i];
+        const mDist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (mDist < MOUSE_RADIUS) {
+          ctx.strokeStyle = `rgba(34, 197, 94, ${0.35 * (1 - mDist / MOUSE_RADIUS)})`;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
         }
       }
-      ctx.globalAlpha = 1;
 
-      animationFrameId = requestAnimationFrame(drawHUD);
+      if (!reduceMotion && !document.hidden) {
+        animationFrameId = requestAnimationFrame(draw);
+      }
+    };
+
+    const handleMouseMove = (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    const handleMouseLeave = () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    };
+    // Met l'animation en pause quand l'onglet n'est pas visible
+    const handleVisibility = () => {
+      cancelAnimationFrame(animationFrameId);
+      if (!document.hidden) draw();
     };
 
     window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('visibilitychange', handleVisibility);
     resizeCanvas();
-    drawHUD();
+    draw();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('visibilitychange', handleVisibility);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] bg-gradient-to-br from-[#071324] via-[#050b14] to-[#01030a] overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full opacity-25"
-      />
-      {/* Cyan vibrant glow at the top left to match the HUD rings, and bottom right for depth */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-cyan-600/10 rounded-full blur-[120px]"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/5 rounded-full blur-[100px]"></div>
+    <div className="fixed inset-0 pointer-events-none z-[-1] bg-[#050b14] overflow-hidden" aria-hidden="true">
+      {/* Halos de couleur qui dérivent lentement */}
+      <div className="aurora-blob absolute top-[-15%] left-[-10%] w-[55vw] h-[55vw] bg-cyan-500/[0.12] rounded-full blur-[120px]" />
+      <div className="aurora-blob aurora-delay-1 absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-blue-600/[0.10] rounded-full blur-[120px]" />
+      <div className="aurora-blob aurora-delay-2 absolute top-[40%] left-[45%] w-[30vw] h-[30vw] bg-emerald-500/[0.06] rounded-full blur-[100px]" />
+      {/* Grille discrète */}
+      <div className="absolute inset-0 bg-pattern-grid opacity-60" />
+      <canvas ref={canvasRef} className="absolute inset-0 opacity-70" />
+      {/* Vignette pour garder le texte lisible */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(1,3,10,0.7)_100%)]" />
     </div>
   );
 };

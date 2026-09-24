@@ -50,7 +50,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-slate-500 text-sm font-mono text-center md:text-right">
           <p>© {currentYear} Tous droits réservés.</p>
-          <p className="text-xs mt-1 opacity-60">Conçu & Développé avec ��</p>
+          <p className="text-xs mt-1 opacity-60">Conçu & Développé avec ❤️ à Labé</p>
         </div>
       </div>
     </footer>
