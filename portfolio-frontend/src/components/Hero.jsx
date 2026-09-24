@@ -93,6 +93,11 @@ export default function Hero({ ready = true }) {
           animate={ready ? 'show' : 'hidden'}
           className="max-w-3xl min-w-0"
         >
+          {/* Photo compacte (mobile et tablette, le grand visuel prend le relais sur desktop) */}
+          <motion.div variants={item} className="lg:hidden relative w-24 h-24 mb-6">
+            <div className="absolute -inset-[3px] rounded-full bg-[conic-gradient(from_var(--angle),#00d4ff,#22c55e,#3b82f6,#00d4ff)] animate-border-spin" />
+            <img src="/profile.png" alt="Sory Keita" className="relative w-full h-full rounded-full object-cover border-4 border-darkBg" />
+          </motion.div>
           <motion.div variants={item} className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-greenAccent/30 bg-greenAccent/10 text-greenAccent text-xs font-mono">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-greenAccent opacity-75"></span>

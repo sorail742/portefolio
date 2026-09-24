@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import SectionTitle from './SectionTitle';
 import { Mail, Github, Linkedin, Smartphone, MapPin, Send, CheckCircle, XCircle, Copy, Check } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -63,7 +64,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 bg-slate-900/30">
+    <section id="contact" className="py-16 md:py-20 px-4 bg-slate-900/30">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -71,9 +72,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 flex items-baseline justify-center">
-            <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">05.</span> {t('contact.title')}
-          </h2>
+          <SectionTitle number="05" center className="mb-4">{t('contact.title')}</SectionTitle>
           <p className="text-slate-400 max-w-xl mx-auto mb-12">
             {t('contact.intro')}
           </p>

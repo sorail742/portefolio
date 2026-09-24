@@ -1,27 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { MapPin, Languages, GraduationCap, Award, BookOpen, Clock } from 'lucide-react';
 import { education } from '../data/education';
 import { profile } from '../data/profile';
 import { useLanguage } from '../i18n/LanguageContext';
+import SectionTitle from './SectionTitle';
 
 const Tech = ({ children }) => <span className="text-slate-200 font-medium">{children}</span>;
 const Accent = ({ children }) => <span className="text-cyanAccent font-medium">{children}</span>;
 
+// Couleur et icône selon l'état de la formation
+const statusStyle = {
+  current: { color: 'text-cyanAccent', border: 'hover:border-cyanAccent/50', bg: 'bg-cyanAccent/10', Icon: BookOpen },
+  done: { color: 'text-greenAccent', border: 'hover:border-greenAccent/50', bg: 'bg-greenAccent/10', Icon: Award },
+  pending: { color: 'text-amber-400', border: 'hover:border-amber-400/50', bg: 'bg-amber-400/10', Icon: Clock },
+};
+
 export default function About() {
   const { t, tr } = useLanguage();
+
+  const facts = [
+    { Icon: MapPin, label: t('about.facts.location'), value: tr(profile.location) },
+    { Icon: Languages, label: t('about.facts.languages'), value: t('about.facts.languagesValue') },
+    { Icon: GraduationCap, label: t('about.facts.studies'), value: t('about.facts.studiesValue') },
+  ];
+
   return (
-    <section id="about" className="py-24 px-4 relative">
+    <section id="about" className="py-16 md:py-20 px-4 relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row gap-12 items-start"
+          className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-start"
         >
-          <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
-              <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">01.</span> {t('about.title')}
-            </h2>
+          <div>
+            <SectionTitle number="01">{t('about.title')}</SectionTitle>
             <div className="text-slate-400 space-y-5 text-lg leading-relaxed max-w-2xl">
               <p className="text-slate-200 text-xl leading-relaxed">{t('about.p1')}</p>
               <p>
@@ -38,34 +52,72 @@ export default function About() {
               ))}
               <span className="px-4 py-2 rounded-full border border-slate-600 text-slate-300 bg-cardBg text-sm font-medium">{t('about.remote')}</span>
             </div>
-
-            <div className="mt-10">
-              <h3 className="font-display font-semibold text-xl text-slate-200 mb-6">{t('about.education')}</h3>
-              <div className="border-l-2 border-slate-700/50 pl-6 space-y-6 relative">
-                {education.map((item) => (
-                  <div key={item.title.fr} className="relative">
-                    <div className={`absolute -left-[31px] top-1.5 w-3 h-3 rounded-full border-4 border-darkBg ${item.status === 'current' ? 'bg-cyanAccent' : item.status === 'done' ? 'bg-greenAccent' : 'bg-slate-500'}`}></div>
-                    <h4 className="text-slate-100 font-bold text-[15px]">{tr(item.title)}</h4>
-                    <p className={`font-mono mt-1 ${item.status === 'current' ? 'text-cyanAccent text-sm' : item.status === 'done' ? 'text-greenAccent text-[13px]' : 'text-slate-400 text-[13px]'}`}>
-                      {tr(item.place)} • {tr(item.date)}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          <div className="w-full md:w-1/3 flex justify-center mt-10 md:mt-0">
-            <div className="relative w-64 h-64 rounded-xl border-2 border-cyanAccent/50 overflow-hidden group shadow-[0_0_30px_rgba(0,212,255,0.15)] hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-500">
-              <div className="absolute inset-0 bg-cyanAccent/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-              <img
-                src="/profile.png"
-                alt="Sory Keita"
-                className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-              />
+          {/* Photo + fiches d'infos */}
+          <div className="w-full max-w-md mx-auto lg:mt-16">
+            <div className="relative group">
+              {/* Cadre dégradé animé */}
+              <div className="absolute -inset-[2px] rounded-2xl bg-[conic-gradient(from_var(--angle),#00d4ff,#22c55e,#3b82f6,#00d4ff)] animate-border-spin opacity-70 group-hover:opacity-100 transition-opacity" />
+              <div className="relative rounded-2xl overflow-hidden bg-darkBg aspect-[4/3]">
+                <img
+                  src="/profile.png"
+                  alt="Sory Keita"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-[50%_30%] group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <div>
+                    <p className="font-display text-xl font-bold text-white">Sory Keita</p>
+                    <p className="text-sm text-slate-300">{t('footer.role')}</p>
+                  </div>
+                  <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-greenAccent/15 border border-greenAccent/30 text-greenAccent text-xs font-mono">
+                    <span className="w-1.5 h-1.5 rounded-full bg-greenAccent animate-pulse" />
+                    {t('hero.visual.available')}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {facts.map(({ Icon, label, value }) => (
+                <div key={label} className="p-4 rounded-xl bg-cardBg/60 backdrop-blur-sm border border-slate-700/50 hover:border-cyanAccent/40 transition-colors">
+                  <Icon size={18} className="text-cyanAccent mb-2" />
+                  <p className="text-[11px] uppercase tracking-wider text-slate-500 font-mono">{label}</p>
+                  <p className="text-sm text-slate-200 mt-0.5 leading-snug">{value}</p>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
+
+        {/* Formations en cartes */}
+        <h3 className="font-display font-semibold text-2xl text-slate-100 mt-20 mb-8">{t('about.education')}</h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {education.map((item, idx) => {
+            const style = statusStyle[item.status];
+            return (
+              <motion.div
+                key={item.title.fr}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.07 }}
+                className={`group flex gap-4 p-5 rounded-xl bg-cardBg/60 backdrop-blur-sm border border-slate-700/50 ${style.border} hover:-translate-y-1 transition-all`}
+              >
+                <div className={`shrink-0 w-11 h-11 rounded-lg flex items-center justify-center ${style.bg} ${style.color}`}>
+                  <style.Icon size={20} />
+                </div>
+                <div className="min-w-0">
+                  <h4 className="text-slate-100 font-semibold leading-snug">{tr(item.title)}</h4>
+                  <p className="text-sm text-slate-400 mt-1">{tr(item.place)}</p>
+                  <p className={`text-xs font-mono mt-2 ${style.color}`}>{tr(item.date)}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

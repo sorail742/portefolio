@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SectionTitle from './SectionTitle';
 import { Github, ExternalLink, Maximize2 } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectModal from './ProjectModal';
+import ProjectPlaceholder from './ProjectPlaceholder';
 import { useLanguage } from '../i18n/LanguageContext';
 
 // Filtres : technologies utilisées par au moins deux projets
@@ -20,17 +22,23 @@ export default function Projects() {
     ? projects
     : projects.filter((p) => p.tech.includes(activeFilter));
 
+  // Mosaïque sans trou : sur 3 colonnes, certaines cartes en prennent 2
+  const isFeatured = (idx) => {
+    const n = visibleProjects.length;
+    if (n % 3 === 2) return idx === 0;
+    if (n % 3 === 1 && n > 1) return idx === 0 || idx === n - 1;
+    return false;
+  };
+
   return (
-    <section id="projects" className="py-24 px-4">
+    <section id="projects" className="py-16 md:py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
-            <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">04.</span> {t('projects.title')}
-          </h2>
+          <SectionTitle number="04" className="mb-8">{t('projects.title')}</SectionTitle>
 
           <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label={t('projects.filterLabel')}>
             {filters.map((filter) => (
@@ -61,13 +69,10 @@ export default function Projects() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setSelectedProject(project)}
-                className="bg-cardBg relative border border-slate-700/50 rounded-xl flex flex-col group transition-all shadow-xl hover:shadow-[0_0_30px_rgba(0,212,255,0.15)] hover:border-cyanAccent/50 cursor-pointer"
+                className={`${isFeatured(idx) ? 'md:col-span-2' : ''} bg-cardBg relative border border-slate-700/50 rounded-xl flex flex-col group transition-all shadow-xl hover:shadow-[0_0_30px_rgba(0,212,255,0.15)] hover:border-cyanAccent/50 cursor-pointer`}
               >
                 {/* Project Image or Gradient Placeholder */}
-                <div className={`h-56 relative flex items-center justify-center overflow-hidden rounded-t-xl group
-                  ${!project.image ? (idx % 3 === 0 ? 'bg-gradient-to-br from-blue-900/40 to-cyan-900/40' :
-                    idx % 3 === 1 ? 'bg-gradient-to-br from-emerald-900/40 to-green-900/40' :
-                      'bg-gradient-to-br from-purple-900/40 to-indigo-900/40') : 'bg-slate-900'}`}>
+                <div className={`${isFeatured(idx) ? 'h-56 md:h-72' : 'h-56'} relative flex items-center justify-center overflow-hidden rounded-t-xl group bg-slate-900`}>
 
                   {project.image ? (
                     <>
@@ -76,19 +81,13 @@ export default function Projects() {
 
                       {/* Premium Mobile Overlay */}
                       {project.mobileImage && (
-                        <div className="absolute -bottom-4 right-4 w-16 h-32 md:w-20 md:h-40 bg-black rounded-xl border-2 border-slate-700/50 shadow-2xl overflow-hidden transform rotate-[-5deg] group-hover:rotate-0 group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 z-20">
+                        <div className="absolute -bottom-4 right-4 w-16 h-32 md:w-24 md:h-48 bg-black rounded-xl border-2 border-slate-700/50 shadow-2xl overflow-hidden transform rotate-[-5deg] group-hover:rotate-0 group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 z-20">
                           <img src={project.mobileImage} alt={`${project.title} mobile`} loading="lazy" className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100" />
                         </div>
                       )}
                     </>
                   ) : (
-                    <>
-                      <div className="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
-                      <motion.span
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="text-4xl text-slate-500 font-mono opacity-60 z-10 group-hover:text-cyanAccent/80 transition-colors duration-300"
-                      >&lt;{project.title.substring(0, 3)}/&gt;</motion.span>
-                    </>
+                    <ProjectPlaceholder title={project.title} large={isFeatured(idx)} />
                   )}
                 </div>
 

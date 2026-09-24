@@ -26,7 +26,7 @@ export const translations = {
             ctaCv: "Voir mon CV",
             pressKey: "Appuyez sur",
             stats: { projects: "Projets réalisés", tech: "Technologies", training: "Formations validées" },
-            visual: { available: "Disponible", availableSub: "Emploi · Freelance · Stage" },
+            visual: { available: "Disponible", availableSub: "Emploi · Freelance · Stage", remote: "Télétravail", remoteSub: "Ouvert aux clients du monde entier" },
         },
         about: {
             title: "À propos de moi",
@@ -44,6 +44,10 @@ export const translations = {
             p3d: ", sur place ou en télétravail.",
             remote: "Télétravail possible",
             education: "Formation & Certifications",
+            facts: {
+                location: "Basé à", languages: "Langues", languagesValue: "Français, Malinké, Anglais technique",
+                studies: "Études", studiesValue: "Licence 3 Informatique",
+            },
         },
         skills: {
             title: "Compétences",
@@ -143,7 +147,7 @@ export const translations = {
             ctaCv: "View my CV",
             pressKey: "Press",
             stats: { projects: "Projects built", tech: "Technologies", training: "Certifications earned" },
-            visual: { available: "Available now", availableSub: "Full-time · Freelance · Internship" },
+            visual: { available: "Available now", availableSub: "Full-time · Freelance · Internship", remote: "Remote ready", remoteSub: "Open to clients worldwide" },
         },
         about: {
             title: "About me",
@@ -161,6 +165,10 @@ export const translations = {
             p3d: ", on-site or remote.",
             remote: "Remote friendly",
             education: "Education & Certifications",
+            facts: {
+                location: "Based in", languages: "Languages", languagesValue: "French, Malinke, technical English",
+                studies: "Studies", studiesValue: "3rd-year CS Bachelor's",
+            },
         },
         skills: {
             title: "Skills",

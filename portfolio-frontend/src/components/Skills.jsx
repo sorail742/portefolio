@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import SectionTitle from './SectionTitle';
 import { skills } from '../data/skills';
+import { techColors } from '../data/techColors';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Skills() {
@@ -92,7 +94,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-24 px-4 relative">
+    <section id="skills" className="py-16 md:py-20 px-4 relative">
       <div className="max-w-7xl mx-auto">
 
         <motion.div
@@ -104,9 +106,7 @@ export default function Skills() {
         >
           {/* LEFT COLUMN: Text and Description */}
           <div className="flex-1 w-full relative z-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
-              <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">02.</span> {t('skills.title')}
-            </h2>
+            <SectionTitle number="02" className="mb-8">{t('skills.title')}</SectionTitle>
             <div className="mb-4">
               <h3 className="text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-2">
                 {t('skills.headline1')}
@@ -147,7 +147,7 @@ export default function Skills() {
             <div className="absolute -inset-1 bg-gradient-to-r from-cyanAccent to-blue-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
 
             {/* Editor Window */}
-            <div className="relative rounded-xl bg-[#0a0f1c]/90 border border-slate-700/50 shadow-2xl backdrop-blur-sm overflow-hidden flex flex-col h-[380px]">
+            <div className="relative rounded-xl bg-[#0a0f1c]/90 border border-slate-700/50 shadow-2xl backdrop-blur-sm overflow-hidden flex flex-col h-[300px] md:h-[320px]">
               {/* Header bar */}
               <div className="h-10 border-b border-slate-700/50 bg-[#0f172a]/80 flex items-center px-4 justify-between">
                 <div className="flex space-x-2">
@@ -186,7 +186,8 @@ export default function Skills() {
               <h4 className="font-mono text-cyanAccent text-sm mb-4">{t(`skills.categories.${category}`)}</h4>
               <div className="flex flex-wrap gap-2">
                 {items.map((item) => (
-                  <span key={item} className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 bg-slate-800/60 border border-slate-700/50">
+                  <span key={item} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-slate-300 bg-slate-800/60 border border-slate-700/50 hover:border-slate-500 hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: techColors[item] ?? '#00d4ff', boxShadow: `0 0 6px ${techColors[item] ?? '#00d4ff'}` }} />
                     {item}
                   </span>
                 ))}
