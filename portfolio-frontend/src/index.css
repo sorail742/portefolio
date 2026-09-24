@@ -135,3 +135,22 @@ html { scrollbar-color: #00d4ff55 #050b14; }
 @media (prefers-reduced-motion: reduce) {
   .animate-border-spin { animation: none; }
 }
+
+/* Impression du CV : une page A4 sans marges, couleurs conservées */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html, body {
+    background: #ffffff !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cv-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+}

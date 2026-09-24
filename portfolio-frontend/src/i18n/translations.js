@@ -119,7 +119,7 @@ export const translations = {
             switchLang: "Switch to English",
         },
         scrollTop: "Retour en haut",
-        cv: { back: "Retour au portfolio", download: "Télécharger en PDF", generating: "Génération..." },
+        cv: { back: "Retour au portfolio", download: "Télécharger en PDF", downloadHint: "Choisissez « Enregistrer au format PDF » dans la fenêtre d'impression" },
     },
 
     en: {
@@ -240,6 +240,6 @@ export const translations = {
             switchLang: "Passer en français",
         },
         scrollTop: "Back to top",
-        cv: { back: "Back to portfolio", download: "Download as PDF", generating: "Generating..." },
+        cv: { back: "Back to portfolio", download: "Download as PDF", downloadHint: "Choose “Save as PDF” in the print dialog" },
     },
 };
