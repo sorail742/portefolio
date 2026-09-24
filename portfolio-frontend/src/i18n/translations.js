@@ -52,14 +52,14 @@ export const translations = {
         skills: {
             title: "Compétences",
             headline1: "Je conçois des applications",
-            headline2: "Rapides & Sécurisées",
-            intro: "Du front-end au back-end, je construis des solutions robustes et évolutives : interfaces réactives, API sécurisées, temps réel avec Socket.io et bases de données relationnelles ou NoSQL.",
-            webMobile: "Développement Mobile & Web",
-            backend: "Backend & Système",
-            categories: {
-                "Frontend & Mobile": "Frontend & Mobile", "Backend": "Backend",
-                "Bases de Données": "Bases de Données", "Outils & DevOps": "Outils & DevOps",
-            },
+            headline2: "rapides et sécurisées.",
+            intro: "Du front-end au back-end, je construis des solutions robustes et évolutives, avec un code clair et facile à maintenir.",
+            points: [
+                "Interfaces React réactives, accessibles et responsive",
+                "API REST et temps réel avec Node.js et Socket.io",
+                "Applications mobiles Flutter connectées à vos données",
+            ],
+            editor: { explorer: "Explorateur", problems: "problème" },
         },
         services: {
             title: "Ce que je peux faire pour vous",
@@ -173,14 +173,14 @@ export const translations = {
         skills: {
             title: "Skills",
             headline1: "I build applications that are",
-            headline2: "Fast & Secure",
-            intro: "From front-end to back-end, I build robust and scalable solutions: responsive interfaces, secure APIs, real-time features with Socket.io, and relational or NoSQL databases.",
-            webMobile: "Mobile & Web Development",
-            backend: "Backend & Systems",
-            categories: {
-                "Frontend & Mobile": "Frontend & Mobile", "Backend": "Backend",
-                "Bases de Données": "Databases", "Outils & DevOps": "Tools & DevOps",
-            },
+            headline2: "fast and secure.",
+            intro: "From front-end to back-end, I build robust and scalable solutions, with clean, maintainable code.",
+            points: [
+                "Responsive, accessible and reactive React interfaces",
+                "REST and real-time APIs with Node.js and Socket.io",
+                "Flutter mobile apps connected to your data",
+            ],
+            editor: { explorer: "Explorer", problems: "problems" },
         },
         services: {
             title: "What I can do for you",

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, MapPin, Command } from 'lucide-react';
 import { profile } from '../data/profile';
 import { projects } from '../data/projects';
-import { skills } from '../data/skills';
+import { allTechnologies } from '../data/skills';
 import { education } from '../data/education';
 import { OPEN_PALETTE_EVENT } from './CommandPalette';
 import MagneticButton from './MagneticButton';
@@ -33,7 +33,7 @@ const NAME = 'Sory Keita.';
 // Chiffres clés calculés à partir des données réelles du portfolio
 const stats = [
   { value: projects.length, key: 'projects' },
-  { value: new Set(Object.values(skills).flat()).size, key: 'tech' },
+  { value: allTechnologies.length, key: 'tech' },
   { value: education.filter((e) => e.status === 'done').length, key: 'training' },
 ];
 
