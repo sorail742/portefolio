@@ -1,9 +1,22 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import React, { useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, ExternalLink, Maximize2 } from 'lucide-react';
 import { projects } from '../data/projects';
+import ProjectModal from './ProjectModal';
+
+// Filtres : technologies utilisées par au moins deux projets
+const techCounts = projects.flatMap((p) => p.tech).reduce((acc, t) => ({ ...acc, [t]: (acc[t] || 0) + 1 }), {});
+const filters = ['Tous', ...Object.keys(techCounts).filter((t) => techCounts[t] > 1)];
 
 export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState('Tous');
+  const [selectedProject, setSelectedProject] = useState(null);
+  const closeModal = useCallback(() => setSelectedProject(null), []);
+
+  const visibleProjects = activeFilter === 'Tous'
+    ? projects
+    : projects.filter((p) => p.tech.includes(activeFilter));
+
   return (
     <section id="projects" className="py-24 px-4">
       <div className="max-w-7xl mx-auto">
@@ -12,20 +25,39 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-mono font-bold mb-12 flex items-center">
+          <h2 className="text-3xl font-mono font-bold mb-8 flex items-center">
             <span className="text-cyanAccent mr-2">03.</span> Projets (En cours)
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, idx) => (
+          <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filtrer les projets par technologie">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setActiveFilter(filter)}
+                aria-pressed={activeFilter === filter}
+                className={`px-4 py-1.5 rounded-full text-sm font-mono border transition-colors ${activeFilter === filter
+                  ? 'bg-cyanAccent text-darkBg border-cyanAccent'
+                  : 'border-slate-700 text-slate-400 hover:border-cyanAccent/50 hover:text-cyanAccent'}`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout">
+            {visibleProjects.map((project, idx) => (
               <motion.div
+                layout
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ delay: idx * 0.05 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-cardBg relative border border-slate-700/50 rounded-xl flex flex-col group transition-all shadow-xl hover:shadow-[0_0_30px_rgba(0,212,255,0.15)] hover:border-cyanAccent/50"
+                onClick={() => setSelectedProject(project)}
+                className="bg-cardBg relative border border-slate-700/50 rounded-xl flex flex-col group transition-all shadow-xl hover:shadow-[0_0_30px_rgba(0,212,255,0.15)] hover:border-cyanAccent/50 cursor-pointer"
               >
                 {/* Project Image or Gradient Placeholder */}
                 <div className={`h-56 relative flex items-center justify-center overflow-hidden rounded-t-xl group
@@ -72,7 +104,7 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  <div className="flex gap-4 mt-auto">
+                  <div className="flex gap-4 mt-auto items-center" onClick={(e) => e.stopPropagation()}>
                     {project.github && project.github !== '#' && (
                       <a href={project.github} target="_blank" rel="noreferrer" aria-label={`Code source de ${project.title}`} className="text-slate-400 hover:text-cyanAccent transition-colors" title="Code Source">
                         <Github size={20} />
@@ -83,13 +115,27 @@ export default function Projects() {
                         <ExternalLink size={20} />
                       </a>
                     )}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProject(project)}
+                      className="ml-auto inline-flex items-center gap-1.5 text-sm font-mono text-slate-400 hover:text-cyanAccent transition-colors"
+                    >
+                      Détails <Maximize2 size={14} />
+                    </button>
                   </div>
                 </div>
               </motion.div>
             ))}
-          </div>
+            </AnimatePresence>
+          </motion.div>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal project={selectedProject} onClose={closeModal} />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

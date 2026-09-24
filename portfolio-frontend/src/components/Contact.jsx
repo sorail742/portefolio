@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Smartphone, MapPin, Send, CheckCircle, XCircle } from 'lucide-react';
+import { Mail, Github, Linkedin, Smartphone, MapPin, Send, CheckCircle, XCircle, Copy, Check } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard?.writeText('keithsorail@gmail.com').then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,9 +74,20 @@ export default function Contact() {
             <div>
               <h3 className="text-xl text-slate-200 font-mono mb-6">Informations</h3>
               <div className="space-y-4">
-                <a href="mailto:keithsorail@gmail.com" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
-                  <Mail className="mr-4 group-hover:scale-110 transition-transform" /> keithsorail@gmail.com
-                </a>
+                <div className="flex items-center gap-3">
+                  <a href="mailto:keithsorail@gmail.com" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
+                    <Mail className="mr-4 group-hover:scale-110 transition-transform" /> keithsorail@gmail.com
+                  </a>
+                  <button
+                    type="button"
+                    onClick={copyEmail}
+                    aria-label="Copier l'adresse email"
+                    title="Copier"
+                    className={`p-1.5 rounded border transition-colors ${copied ? 'border-greenAccent text-greenAccent' : 'border-slate-700 text-slate-500 hover:text-cyanAccent hover:border-cyanAccent/50'}`}
+                  >
+                    {copied ? <Check size={14} /> : <Copy size={14} />}
+                  </button>
+                </div>
                 <a href="tel:+224624284874" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
                   <Smartphone className="mr-4 group-hover:scale-110 transition-transform" /> +224 624 284 874
                 </a>

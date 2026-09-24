@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portefolio-six-chi.vercel.app/sitemap.xml

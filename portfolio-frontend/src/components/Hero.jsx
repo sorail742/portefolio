@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Github, Linkedin, Mail, MapPin, Command } from 'lucide-react';
+import { profile } from '../data/profile';
+import { projects } from '../data/projects';
+import { skills } from '../data/skills';
+import { education } from '../data/education';
+import { OPEN_PALETTE_EVENT } from './CommandPalette';
+
+// Chiffres clés calculés à partir des données réelles du portfolio
+const stats = [
+  { value: projects.length, label: 'Projets réalisés' },
+  { value: new Set(Object.values(skills).flat()).size, label: 'Technologies' },
+  { value: education.filter((e) => e.status === 'done').length, label: 'Formations validées' },
+];
 
 const Typewriter = ({ texts }) => {
   const [index, setIndex] = useState(0);
@@ -57,6 +70,13 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-greenAccent/30 bg-greenAccent/10 text-greenAccent text-xs font-mono">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-greenAccent opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-greenAccent"></span>
+            </span>
+            Disponible pour un stage
+          </div>
           <p className="text-greenAccent font-mono mb-4 text-lg">Hello World, je suis</p>
           <h1 className="text-5xl md:text-7xl font-bold font-mono text-slate-100 mb-6">
             Sory Keita.
@@ -64,8 +84,11 @@ export default function Hero() {
           <h2 className="text-4xl md:text-6xl font-bold font-mono text-slate-400 mb-8 min-h-[96px] md:min-h-[auto] md:whitespace-nowrap">
             <Typewriter texts={['Étudiant L3 Informatique', 'Développeur Full-Stack', 'React · Node.js · Mobile']} />
           </h2>
-          <p className="text-xl text-slate-400 mb-10 max-w-2xl font-sans">
-            Je construis des applications web et mobile performantes depuis Labé, Guinée.
+          <p className="text-xl text-slate-400 mb-4 max-w-2xl font-sans">
+            Je construis des applications web et mobile performantes, du front-end au back-end.
+          </p>
+          <p className="flex items-center text-sm text-slate-500 font-mono mb-10">
+            <MapPin size={14} className="mr-1.5" /> {profile.location} · Ouvert au télétravail
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -75,6 +98,34 @@ export default function Hero() {
             <Link to="/cv" className="px-6 sm:px-8 py-4 whitespace-nowrap border border-slate-600 text-slate-300 font-bold rounded hover:border-cyanAccent hover:text-cyanAccent transition-colors">
               Voir mon CV
             </Link>
+          </div>
+
+          <div className="flex items-center gap-5 mt-8">
+            <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-slate-400 hover:text-cyanAccent hover:-translate-y-0.5 transition-all">
+              <Github size={22} />
+            </a>
+            <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-slate-400 hover:text-cyanAccent hover:-translate-y-0.5 transition-all">
+              <Linkedin size={22} />
+            </a>
+            <a href={`mailto:${profile.email}`} aria-label="Email" className="text-slate-400 hover:text-cyanAccent hover:-translate-y-0.5 transition-all">
+              <Mail size={22} />
+            </a>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}
+              className="hidden md:inline-flex items-center gap-1.5 ml-2 px-2.5 py-1 rounded border border-slate-700 text-slate-500 hover:text-cyanAccent hover:border-cyanAccent/50 font-mono text-xs transition-colors"
+            >
+              Appuyez sur <Command size={12} /> K
+            </button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 mt-14 max-w-lg">
+            {stats.map((stat) => (
+              <div key={stat.label} className="border-l-2 border-cyanAccent/40 pl-4">
+                <div className="text-3xl md:text-4xl font-bold font-mono text-slate-100">{stat.value}</div>
+                <div className="text-xs md:text-sm text-slate-500 mt-1">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>
