@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,26 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Met en surbrillance le lien de la section visible à l'écran
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    ['home', 'about', 'skills', 'projects', 'contact'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const linkClass = (path) =>
+    path === `/#${activeSection}` ? 'text-cyanAccent' : 'text-gray-300 hover:text-cyanAccent';
 
   const navLinks = [
     { name: 'Accueil', path: '/#home' },
@@ -37,7 +58,7 @@ export default function Navbar() {
           </Link>
           <div className="hidden md:flex space-x-8 items-center">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.path} className="text-gray-300 hover:text-cyanAccent font-mono text-sm transition-colors">
+              <a key={link.name} href={link.path} className={`${linkClass(link.path)} font-mono text-sm transition-colors`}>
                 {link.name}
               </a>
             ))}
@@ -72,7 +93,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.path}
                   onClick={() => setMenuOpen(false)}
-                  className="text-gray-300 hover:text-cyanAccent font-mono transition-colors"
+                  className={`${linkClass(link.path)} font-mono transition-colors`}
                 >
                   {link.name}
                 </a>

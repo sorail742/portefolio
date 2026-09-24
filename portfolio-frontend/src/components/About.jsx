@@ -41,9 +41,9 @@ export default function About() {
                 </div>
 
                 <div className="relative">
-                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-500 border-4 border-darkBg"></div>
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-greenAccent border-4 border-darkBg"></div>
                   <h4 className="text-slate-100 font-bold text-[15px]">Formation Automatisation avec n8n</h4>
-                  <p className="text-slate-400 font-mono text-[13px] mt-1">Certificat en cours • Mai 2026</p>
+                  <p className="text-greenAccent font-mono text-[13px] mt-1">Certificat obtenu • Mai 2026</p>
                 </div>
 
                 <div className="relative">

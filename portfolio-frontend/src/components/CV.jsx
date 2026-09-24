@@ -187,7 +187,7 @@ const CV = forwardRef((props, ref) => {
             <h3 style={{ fontWeight: 'bold', color: '#334155', fontSize: '15px', margin: '0 0 6px 0' }}>Certifications et Formations</h3>
             <ul style={{ listStyle: 'disc', paddingLeft: '18px', color: '#475569', fontSize: '11px', lineHeight: '1.4', margin: 0 }}>
               <li style={{ marginBottom: '2px' }}><strong>Licence Informatique</strong> — Univ. de Labé (2024 - 2027)</li>
-              <li style={{ marginBottom: '2px' }}><strong>Formation Automatisation (n8n)</strong> — Certificat en cours (Mai 2026)</li>
+              <li style={{ marginBottom: '2px' }}><strong>Formation Automatisation (n8n)</strong> — Certificat obtenu (Mai 2026)</li>
               <li style={{ marginBottom: '2px' }}><strong>Formation Cybersécurité & Data</strong> — Attestation en cours (Avril 2026)</li>
               <li style={{ marginBottom: '2px' }}><strong>Formation ReactJS, NodeJS, MongoDB</strong> — Simplon, Univ. de Labé (Vacances 2025)</li>
               <li style={{ marginBottom: '2px' }}><strong>Attestation Bases Sécurité Info.</strong> — Orange (Juin 2025)</li>
