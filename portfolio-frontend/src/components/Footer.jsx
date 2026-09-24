@@ -19,7 +19,7 @@ export default function Footer() {
 
         {/* Branding */}
         <div className="mb-4 md:mb-0 text-center md:text-left">
-          <span className="text-2xl font-bold font-mono text-slate-200">
+          <span className="text-2xl font-bold font-display text-slate-200">
             Sory<span className="text-cyanAccent">.</span>Keita
           </span>
           <p className="text-slate-500 text-sm mt-1 font-mono">

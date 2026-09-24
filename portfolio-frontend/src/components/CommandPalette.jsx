@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Search, Home, User, Code2, FolderGit2, Mail, FileText, Copy, Github, Linkedin, CornerDownLeft } from 'lucide-react';
+import { Search, Home, User, Code2, Briefcase, FolderGit2, Mail, FileText, Copy, Github, Linkedin, CornerDownLeft } from 'lucide-react';
 import { profile } from '../data/profile';
 
 export const OPEN_PALETTE_EVENT = 'open-command-palette';
@@ -29,6 +29,7 @@ export default function CommandPalette() {
     { group: 'Navigation', label: 'Accueil', icon: Home, action: () => goTo('home') },
     { group: 'Navigation', label: 'À propos', icon: User, action: () => goTo('about') },
     { group: 'Navigation', label: 'Compétences', icon: Code2, action: () => goTo('skills') },
+    { group: 'Navigation', label: 'Services', icon: Briefcase, action: () => goTo('services') },
     { group: 'Navigation', label: 'Projets', icon: FolderGit2, action: () => goTo('projects') },
     { group: 'Navigation', label: 'Contact', icon: Mail, action: () => goTo('contact') },
     { group: 'Actions', label: 'Voir / télécharger mon CV', icon: FileText, action: () => navigate('/cv') },

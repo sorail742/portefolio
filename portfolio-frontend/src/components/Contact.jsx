@@ -4,7 +4,7 @@ import { Mail, Github, Linkedin, Smartphone, MapPin, Send, CheckCircle, XCircle,
 import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: 'Freelance', message: '' });
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const [copied, setCopied] = useState(false);
 
@@ -31,13 +31,14 @@ export default function Contact() {
       email: formData.email, // Added just in case
       temps: new Date().toLocaleString('fr-FR'), // Added to match their template {{temps}}
       reply_to: formData.email,
-      message: formData.message,
+      subject: formData.subject,
+      message: `Objet : ${formData.subject}\n\n${formData.message}`,
     };
 
     emailjs.send(serviceID, templateID, templateParams, publicKey)
       .then(() => {
         setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', subject: 'Freelance', message: '' });
 
         // Reset status after 5 seconds
         setTimeout(() => setStatus('idle'), 5000);
@@ -63,16 +64,16 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-3xl font-mono font-bold mb-4 flex items-center justify-center">
-            <span className="text-cyanAccent mr-2">04.</span> Me Contacter
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 flex items-baseline justify-center">
+            <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">05.</span> Travaillons ensemble
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto mb-12">
-            Disponible pour un stage ou une mission freelance. Que vous ayez une question ou un projet, n'hésitez pas à m'écrire !
+            Vous recrutez, vous avez un projet freelance ou une offre de stage ? Décrivez-moi votre besoin, je vous réponds rapidement.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
             <div>
-              <h3 className="text-xl text-slate-200 font-mono mb-6">Informations</h3>
+              <h3 className="text-xl font-display font-semibold text-slate-200 mb-6">Informations</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <a href="mailto:keithsorail@gmail.com" className="flex items-center text-slate-400 hover:text-cyanAccent transition-colors group">
@@ -124,11 +125,27 @@ export default function Contact() {
                   required
                   className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyanAccent/50 focus:ring-1 focus:ring-cyanAccent/50 transition-all mb-4"
                 />
+                <div className="flex flex-wrap gap-2 mb-4" role="radiogroup" aria-label="Objet de votre message">
+                  {['Emploi', 'Freelance', 'Stage', 'Autre'].map((subject) => (
+                    <button
+                      key={subject}
+                      type="button"
+                      role="radio"
+                      aria-checked={formData.subject === subject}
+                      onClick={() => setFormData({ ...formData, subject })}
+                      className={`px-4 py-1.5 rounded-full text-sm border transition-colors ${formData.subject === subject
+                        ? 'bg-cyanAccent text-darkBg border-cyanAccent font-semibold'
+                        : 'border-slate-700 text-slate-400 hover:border-cyanAccent/50 hover:text-cyanAccent'}`}
+                    >
+                      {subject}
+                    </button>
+                  ))}
+                </div>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Message"
+                  placeholder="Décrivez votre besoin (poste, projet, délais...)"
                   required
                   rows="4"
                   className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyanAccent/50 focus:ring-1 focus:ring-cyanAccent/50 transition-all resize-none mb-4"

@@ -25,8 +25,8 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-mono font-bold mb-8 flex items-center">
-            <span className="text-cyanAccent mr-2">03.</span> Projets (En cours)
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
+            <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">04.</span> Projets récents
           </h2>
 
           <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filtrer les projets par technologie">
@@ -90,7 +90,7 @@ export default function Projects() {
                 </div>
 
                 <div className="p-6 flex flex-col flex-grow relative z-10">
-                  <h3 className="text-xl font-bold font-mono text-slate-100 mb-3 group-hover:text-cyanAccent transition-colors">
+                  <h3 className="text-xl font-bold font-display text-slate-100 mb-3 group-hover:text-cyanAccent transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-slate-400 text-sm mb-6 line-clamp-4">

@@ -102,25 +102,25 @@ export default function Skills() {
         >
           {/* LEFT COLUMN: Text and Description */}
           <div className="flex-1 w-full relative z-10">
-            <h2 className="text-3xl font-mono font-bold mb-8 flex items-center">
-              <span className="text-cyanAccent mr-2">02.</span> Compétences
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
+              <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">02.</span> Compétences
             </h2>
             <div className="mb-4">
               <h3 className="text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-2">
-                Je Bâtis des applications
+                Je conçois des applications
               </h3>
               <h3 className="text-4xl md:text-5xl font-extrabold text-cyanAccent uppercase tracking-tight flex items-center">
-                Performantes & Sécurisées<span className="animate-pulse ml-1">.</span><span className="text-cyanAccent font-light animate-ping ml-2">|</span>
+                Rapides & Sécurisées<span className="animate-pulse ml-1">.</span><span className="text-cyanAccent font-light animate-ping ml-2">|</span>
               </h3>
             </div>
 
-            <p className="text-slate-400 text-lg leading-relaxed mb-10 max-w-xl text-justify">
-              En tant que développeur full-stack, j'implémente des solutions robustes et scalables, du front-end mobile au back-end, tout en maîtrisant mon environnement système.
+            <p className="text-slate-400 text-lg leading-relaxed mb-10 max-w-xl">
+              Du front-end au back-end, je construis des solutions robustes et évolutives : interfaces réactives, API sécurisées, temps réel avec Socket.io et bases de données relationnelles ou NoSQL.
             </p>
 
             <div className="space-y-6">
               <div className="group">
-                <h3 className="text-xl font-bold font-mono text-slate-200 mb-2 group-hover:text-cyanAccent transition-colors">
+                <h3 className="text-xl font-bold font-display text-slate-200 mb-2 group-hover:text-cyanAccent transition-colors">
                   <span className="text-cyanAccent mr-2">/&gt;</span>Développement Mobile & Web
                 </h3>
                 <p className="text-slate-500 font-mono pl-6 border-l-2 border-slate-700/50 group-hover:border-cyanAccent/50 transition-colors">
@@ -129,7 +129,7 @@ export default function Skills() {
               </div>
 
               <div className="group">
-                <h3 className="text-xl font-bold font-mono text-slate-200 mb-2 group-hover:text-greenAccent transition-colors">
+                <h3 className="text-xl font-bold font-display text-slate-200 mb-2 group-hover:text-greenAccent transition-colors">
                   <span className="text-greenAccent mr-2">/&gt;</span>Backend & Système
                 </h3>
                 <p className="text-slate-500 font-mono pl-6 border-l-2 border-slate-700/50 group-hover:border-greenAccent/50 transition-colors">

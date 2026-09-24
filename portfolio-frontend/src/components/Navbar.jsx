@@ -26,7 +26,7 @@ export default function Navbar() {
       },
       { rootMargin: '-45% 0px -50% 0px' }
     );
-    ['home', 'about', 'skills', 'projects', 'contact'].forEach((id) => {
+    ['home', 'about', 'skills', 'services', 'projects', 'contact'].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -40,6 +40,7 @@ export default function Navbar() {
     { name: 'Accueil', path: '/#home' },
     { name: 'À propos', path: '/#about' },
     { name: 'Compétences', path: '/#skills' },
+    { name: 'Services', path: '/#services' },
     { name: 'Projets', path: '/#projects' },
     { name: 'Contact', path: '/#contact' },
   ];
@@ -56,7 +57,7 @@ export default function Navbar() {
               className="text-cyanAccent ml-1"
             >_</motion.span>
           </Link>
-          <div className="hidden md:flex space-x-8 items-center">
+          <div className="hidden lg:flex space-x-7 items-center">
             {navLinks.map((link) => (
               <a key={link.name} href={link.path} className={`${linkClass(link.path)} font-mono text-sm transition-colors`}>
                 {link.name}
@@ -69,7 +70,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="md:hidden text-slate-300 hover:text-cyanAccent transition-colors p-2"
+            className="lg:hidden text-slate-300 hover:text-cyanAccent transition-colors p-2"
             aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={menuOpen}
           >
@@ -85,7 +86,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden border-t border-slate-800"
+            className="lg:hidden overflow-hidden border-t border-slate-800"
           >
             <div className="px-4 py-6 flex flex-col space-y-4">
               {navLinks.map((link) => (

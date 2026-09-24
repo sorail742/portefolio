@@ -95,13 +95,13 @@ export default function Hero({ ready = true }) {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-greenAccent opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-greenAccent"></span>
             </span>
-            Disponible pour un stage
+            Disponible · Emploi, freelance & stage
           </motion.div>
           <motion.p variants={item} className="text-greenAccent font-mono mb-4 text-lg">Hello World, je suis</motion.p>
           <motion.h1
             variants={nameContainer}
             aria-label={NAME}
-            className="text-5xl md:text-7xl font-bold font-mono mb-6 [perspective:600px]"
+            className="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-6 [perspective:600px]"
           >
             {NAME.split('').map((char, i) => (
               <motion.span
@@ -115,11 +115,11 @@ export default function Hero({ ready = true }) {
               </motion.span>
             ))}
           </motion.h1>
-          <motion.h2 variants={item} className="text-4xl md:text-6xl font-bold font-mono text-slate-400 mb-8 min-h-[96px] md:min-h-[auto] md:whitespace-nowrap">
-            <Typewriter texts={['Étudiant L3 Informatique', 'Développeur Full-Stack', 'React · Node.js · Mobile']} />
+          <motion.h2 variants={item} className="text-3xl md:text-5xl font-semibold font-mono text-slate-400 mb-8 min-h-[80px] md:min-h-[auto] md:whitespace-nowrap">
+            <Typewriter texts={['Développeur Full-Stack', 'Développeur Mobile', 'Freelance React & Node', 'Étudiant L3 Informatique']} />
           </motion.h2>
           <motion.p variants={item} className="text-xl text-slate-400 mb-4 max-w-2xl font-sans">
-            Je construis des applications web et mobile performantes, du front-end au back-end.
+            Je conçois des applications web et mobiles rapides, fiables et agréables à utiliser — de l'interface jusqu'à l'API et la base de données.
           </motion.p>
           <motion.p variants={item} className="flex items-center text-sm text-slate-500 font-mono mb-10">
             <MapPin size={14} className="mr-1.5" /> {profile.location} · Ouvert au télétravail
@@ -162,7 +162,7 @@ export default function Hero({ ready = true }) {
           <motion.div variants={item} className="grid grid-cols-3 gap-4 mt-14 max-w-lg">
             {stats.map((stat) => (
               <div key={stat.label} className="border-l-2 border-cyanAccent/40 pl-4">
-                <div className="text-3xl md:text-4xl font-bold font-mono text-slate-100">{stat.value}</div>
+                <div className="text-3xl md:text-4xl font-bold font-display text-slate-100">{stat.value}</div>
                 <div className="text-xs md:text-sm text-slate-500 mt-1">{stat.label}</div>
               </div>
             ))}

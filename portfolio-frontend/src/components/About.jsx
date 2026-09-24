@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { education } from '../data/education';
+import { profile } from '../data/profile';
 
 export default function About() {
   return (
@@ -13,26 +14,30 @@ export default function About() {
           className="flex flex-col md:flex-row gap-12 items-start"
         >
           <div className="flex-1">
-            <h2 className="text-3xl font-mono font-bold mb-8 flex items-center">
-              <span className="text-cyanAccent mr-2">01.</span> À propos de moi
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 flex items-baseline">
+              <span className="text-cyanAccent font-mono text-xl md:text-2xl mr-3">01.</span> À propos de moi
             </h2>
-            <div className="text-slate-400 font-sans space-y-4 text-lg leading-relaxed">
-              <p className="text-slate-300 text-lg leading-relaxed text-justify relative z-10 mb-6 font-sans">
-                Passionné par le développement depuis mes débuts en programmation, je suis actuellement en 3ème année de Licence Informatique à l'Université de Labé. Mon objectif est de créer des outils performants, accessibles et esthétiques.
+            <div className="text-slate-400 space-y-5 text-lg leading-relaxed max-w-2xl">
+              <p className="text-slate-200 text-xl leading-relaxed">
+                Je suis développeur Full-Stack & Mobile basé à Labé, en Guinée, et étudiant en 3ème année de Licence Informatique à l'Université de Labé. J'aime transformer une idée en produit concret : une interface soignée, une API solide et une base de données bien pensée.
               </p>
               <p>
-                En tant que développeur orienté Full-Stack et Mobile, j'affectionne particulièrement l'écosystème React et Node.js. Je m'efforce toujours d'apprendre les meilleures pratiques et de relever de nouveaux défis.
+                Au quotidien, je travaille avec <span className="text-slate-200 font-medium">React</span>, <span className="text-slate-200 font-medium">Node.js</span> et <span className="text-slate-200 font-medium">Flutter</span>, et j'automatise des processus avec <span className="text-slate-200 font-medium">n8n</span>. J'ai conçu plusieurs applications complètes — santé, e-commerce agricole, intégration des migrants, gestion d'entreprise — ce qui m'a appris à mener un projet de bout en bout.
+              </p>
+              <p>
+                Aujourd'hui, je suis ouvert à un <span className="text-cyanAccent font-medium">poste en entreprise</span>, à des <span className="text-cyanAccent font-medium">missions freelance</span> ou à un <span className="text-cyanAccent font-medium">stage</span>, sur place ou en télétravail.
               </p>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <span className="px-4 py-2 rounded-full border border-cyanAccent/30 text-cyanAccent bg-cyanAccent/10 text-sm font-mono">Passionné d'Open Source</span>
-              <span className="px-4 py-2 rounded-full border border-cyanAccent/30 text-cyanAccent bg-cyanAccent/10 text-sm font-mono">Disponible pour stage</span>
-              <span className="px-4 py-2 rounded-full border border-slate-600 text-slate-300 bg-cardBg text-sm font-mono">Open to remote</span>
+              {profile.availability.map((label) => (
+                <span key={label} className="px-4 py-2 rounded-full border border-greenAccent/30 text-greenAccent bg-greenAccent/10 text-sm font-medium">{label}</span>
+              ))}
+              <span className="px-4 py-2 rounded-full border border-slate-600 text-slate-300 bg-cardBg text-sm font-medium">Télétravail possible</span>
             </div>
 
             <div className="mt-10">
-              <h3 className="font-mono text-xl text-slate-200 mb-6">Formation & Certifications</h3>
+              <h3 className="font-display font-semibold text-xl text-slate-200 mb-6">Formation & Certifications</h3>
               <div className="border-l-2 border-slate-700/50 pl-6 space-y-6 relative">
                 {education.map((item) => (
                   <div key={item.title} className="relative">

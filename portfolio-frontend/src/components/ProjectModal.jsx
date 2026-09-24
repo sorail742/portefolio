@@ -61,7 +61,7 @@ export default function ProjectModal({ project, onClose }) {
         )}
 
         <div className="p-6 md:p-10">
-          <h3 className="text-2xl md:text-3xl font-bold font-mono text-slate-100 mb-4">{project.title}</h3>
+          <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-100 mb-4">{project.title}</h3>
           <p className="text-slate-300 leading-relaxed mb-6">{project.description}</p>
 
           <h4 className="text-sm font-mono text-slate-500 uppercase tracking-wider mb-3">Stack technique</h4>

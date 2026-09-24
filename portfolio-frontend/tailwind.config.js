@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['"JetBrains Mono"', 'monospace'],
-        sans: ['"Outfit"', 'sans-serif'],
+        mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'monospace'],
+        sans: ['"Inter Variable"', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk Variable"', '"Inter Variable"', 'sans-serif'],
       },
       colors: {
         darkBg: '#0a0f1e',
