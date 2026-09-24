@@ -8,6 +8,7 @@ import { skills } from '../data/skills';
 import { education } from '../data/education';
 import { OPEN_PALETTE_EVENT } from './CommandPalette';
 import MagneticButton from './MagneticButton';
+import HeroVisual from './HeroVisual';
 import { useLanguage } from '../i18n/LanguageContext';
 
 // Apparition en cascade des éléments du Hero après l'écran de démarrage
@@ -70,7 +71,7 @@ const Typewriter = ({ texts }) => {
 export default function Hero({ ready = true }) {
   const { t, tr, lang } = useLanguage();
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 px-4 relative">
+    <section id="home" className="min-h-screen flex items-center pt-20 px-4 relative overflow-x-clip">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Glow Effects */}
         <motion.div
@@ -85,12 +86,12 @@ export default function Hero({ ready = true }) {
         </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto w-full z-10">
+      <div className="max-w-7xl mx-auto w-full z-10 grid lg:grid-cols-[1.15fr_1fr] gap-10 items-center">
         <motion.div
           variants={container}
           initial="hidden"
           animate={ready ? 'show' : 'hidden'}
-          className="max-w-3xl"
+          className="max-w-3xl min-w-0"
         >
           <motion.div variants={item} className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-greenAccent/30 bg-greenAccent/10 text-greenAccent text-xs font-mono">
             <span className="relative flex h-2 w-2">
@@ -103,7 +104,7 @@ export default function Hero({ ready = true }) {
           <motion.h1
             variants={nameContainer}
             aria-label={NAME}
-            className="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-6 [perspective:600px]"
+            className="text-6xl md:text-7xl xl:text-8xl font-display font-bold tracking-tighter mb-6 [perspective:600px]"
           >
             {NAME.split('').map((char, i) => (
               <motion.span
@@ -117,7 +118,7 @@ export default function Hero({ ready = true }) {
               </motion.span>
             ))}
           </motion.h1>
-          <motion.h2 variants={item} className="text-3xl md:text-5xl font-semibold font-mono text-slate-400 mb-8 min-h-[80px] md:min-h-[auto] md:whitespace-nowrap">
+          <motion.h2 variants={item} className="text-3xl md:text-4xl xl:text-5xl font-semibold font-mono text-slate-400 mb-8 min-h-[80px] md:min-h-[auto] md:whitespace-nowrap">
             <Typewriter key={lang} texts={t('hero.roles')} />
           </motion.h2>
           <motion.p variants={item} className="text-xl text-slate-400 mb-4 max-w-2xl font-sans">
@@ -169,6 +170,16 @@ export default function Hero({ ready = true }) {
               </div>
             ))}
           </motion.div>
+        </motion.div>
+
+        {/* Visuel interactif (grands écrans) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="hidden lg:block"
+        >
+          <HeroVisual />
         </motion.div>
       </div>
     </section>
