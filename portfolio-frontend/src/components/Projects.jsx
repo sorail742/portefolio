@@ -56,6 +56,7 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: idx * 0.05 }}
                 whileHover={{ y: -8, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setSelectedProject(project)}
                 className="bg-cardBg relative border border-slate-700/50 rounded-xl flex flex-col group transition-all shadow-xl hover:shadow-[0_0_30px_rgba(0,212,255,0.15)] hover:border-cyanAccent/50 cursor-pointer"
               >
